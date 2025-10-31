@@ -132,9 +132,7 @@ group_results = compare_molecule_groups_regression_lens(
 )
 plot_group_molecules_regression_lens(group_results, results_dir=Path("results/esol/regression_lens"))
 
-group_results
 
-ordered_targets
 
 # %%
 

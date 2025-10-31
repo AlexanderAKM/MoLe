@@ -127,11 +127,19 @@ def compare_molecule_groups_regression_lens(
     results = {}
     all_smiles_ordered = []
     
+    # Track start/end indices for each group's targets
+    group_target_indices = {}
+    current_idx = 0
+    
     for group, smiles in group_smiles.items():
         print(f"Processing {group}: {len(smiles)} molecules...")
         group_results = run_regression_lens(tl_model, regressor, scaler, smiles, tokenizer, device, batch_size)
         results[group] = group_results
         all_smiles_ordered.extend(smiles)
+        
+        # Store the indices for this group's targets
+        group_target_indices[group] = (current_idx, current_idx + len(smiles))
+        current_idx += len(smiles)
 
         # Compute per-layer mean and std across all molecules in the group
         layer_names = list(next(iter(group_results.values())).keys())
@@ -168,16 +176,30 @@ def compare_molecule_groups_regression_lens(
         print(f"max and min are {max(all_predictions_by_layer[layer]), min(all_predictions_by_layer[layer])}")
         print(f"Layer {layer} predictions (first 20):", all_predictions_by_layer[layer][:20])
     
-    # Compute R^2 per layer
+    # Compute global R^2 per layer
     r2_scores = {}
     for layer in layer_names:
             r2_scores[layer] = r2_score(targets, all_predictions_by_layer[layer])
+    
+    # Compute per-group R^2 per layer
+    for group, smiles in group_smiles.items():
+        start_idx, end_idx = group_target_indices[group]
+        group_targets = targets[start_idx:end_idx]
+        group_r2_scores = {}
+        
+        for layer in layer_names:
+            # Collect predictions for this group at this layer
+            group_predictions = np.array([results[group][smile][layer] for smile in smiles])
+            group_r2_scores[layer] = r2_score(group_targets, group_predictions)
+        
+        results[group]["r2_scores"] = group_r2_scores
+        print(f"{group} R² scores by layer: {group_r2_scores}")
     
     results["target_variance"] = target_variance
     results["variance_ratio"] = variance_ratios
     results["r2_scores"] = r2_scores
     print(f"Variance ratios by layer: {variance_ratios}")
-    print(f"R² scores by layer: {r2_scores}")
+    print(f"Global R² scores by layer: {r2_scores}")
     
     # Save predictions to CSV if directory provided
     if results_dir is not None:
@@ -296,13 +318,12 @@ def plot_group_molecules_regression_lens(
         ratios = [variance_ratios[layer] for layer in layer_names]
         
         plt.figure(figsize=(12, 8))
-        plt.plot(range(len(layer_names)), ratios, 'o-', linewidth=2, markersize=10, color='#2E86AB')
-        
-        # Add horizontal line at y=1 to show where variance equals target variance
-        plt.axhline(y=1.0, color='red', linestyle='--', alpha=0.7, linewidth=2, label='Equal Variance')
-        
-        plt.title(f"{title} - Variance Ratio Across Layers", fontsize=18)
-        plt.ylabel("Variance Ratio (Predictions / Targets)", fontsize=16)
+        # Use a color from the turbo colormap for consistency
+        variance_color = plt.cm.turbo(0.3)
+        plt.plot(range(len(layer_names)), ratios, 'o-', linewidth=2, markersize=10, color=variance_color)
+                
+        plt.title(f"{title} - Variance Ratio", fontsize=18)
+        plt.ylabel("Variance Ratio", fontsize=16)
         plt.xticks(range(len(layer_names)), x_axis_labels, rotation=45, fontsize=14)
         plt.yticks(fontsize=14)
         plt.grid(True, alpha=0.3)
@@ -318,13 +339,12 @@ def plot_group_molecules_regression_lens(
         ratios = [variance_ratios[layer] * r2_scores[layer] for layer in layer_names]
         
         plt.figure(figsize=(12, 8))
-        plt.plot(range(len(layer_names)), ratios, 'o-', linewidth=2, markersize=10, color='#2E86AB')
-        
-        # Add horizontal line at y=1 to show where variance equals target variance
-        plt.axhline(y=1.0, color='red', linestyle='--', alpha=0.7, linewidth=2, label='Equal Variance')
-        
-        plt.title(f"{title} - Variance Ratio Across Layers", fontsize=18)
-        plt.ylabel("Variance Ratio (Predictions / Targets) x R^2", fontsize=16)
+        # Use a color from the turbo colormap for consistency
+        combined_color = plt.cm.turbo(0.5)
+        plt.plot(range(len(layer_names)), ratios, 'o-', linewidth=2, markersize=10, color=combined_color)
+                
+        plt.title(f"{title} - Variance Ratio × R²", fontsize=18)
+        plt.ylabel("Variance Ratio × R²", fontsize=16)
         plt.xticks(range(len(layer_names)), x_axis_labels, rotation=45, fontsize=14)
         plt.yticks(fontsize=14)
         plt.grid(True, alpha=0.3)
@@ -343,16 +363,13 @@ def plot_group_molecules_regression_lens(
         r2_values = [r2_scores[layer] for layer in layer_names]
         
         plt.figure(figsize=(12, 8))
-        colors = plt.cm.turbo(np.linspace(0, 1, 2))
+        metric_colors = plt.cm.turbo(np.linspace(0, 1, 2))
 
-        plt.plot(range(len(layer_names)), variance_ratio_values, 'o-', linewidth=2, markersize=10, color=colors[0], label='Variance Ratio')
-        plt.plot(range(len(layer_names)), r2_values, 'o-', linewidth=2, markersize=10, color=colors[1], label='R²')
-
-        # Add horizontal line at y=1 to show where variance equals target variance
-        plt.axhline(y=1.0, color='red', linestyle='--', alpha=0.7, linewidth=2, label='Equal Variance')
+        plt.plot(range(len(layer_names)), variance_ratio_values, 'o-', linewidth=2, markersize=10, color=metric_colors[0], label='Variance Ratio')
+        plt.plot(range(len(layer_names)), r2_values, 'o-', linewidth=2, markersize=10, color=metric_colors[1], label='R²')
         
-        plt.title(f"{title} - Variance and R2 Across Layers", fontsize=18)
-        plt.ylabel("Variance Ratio and R^2", fontsize=16)
+        plt.title(f"{title} - Variance and R²", fontsize=18)
+        plt.ylabel("Variance Ratio and R²", fontsize=16)
         plt.xticks(range(len(layer_names)), x_axis_labels, rotation=45, fontsize=14)
         plt.yticks(fontsize=14)
         plt.grid(True, alpha=0.3)
@@ -369,18 +386,15 @@ def plot_group_molecules_regression_lens(
         
         plt.figure(figsize=(12, 8))
         
-        # Recreate colors array for groups (was overwritten earlier)
-        group_colors = plt.cm.turbo(np.linspace(0, 1, n_groups))
-        
         # Plot variance ratio × R² for each group
         for i, (group_name, group_data) in enumerate(group_items):
             # Calculate variance ratio for this group: group variance / target variance
             variance_ratios = [group_data["variance"][layer] / target_variance for layer in layer_names]
             variance_ratio_times_r2 = [var_ratio * r2 for var_ratio, r2 in zip(variance_ratios, r2_values)]
             plt.plot(range(len(layer_names)), variance_ratio_times_r2, 'o-', alpha=0.8, 
-                    label=group_name, color=group_colors[i], linewidth=2, markersize=8)
+                    label=group_name, color=colors[i], linewidth=2, markersize=8)
         
-        plt.title(f"{title} - Group Variance Ratio × R² Across Layers", fontsize=18)
+        plt.title(f"{title} - Group Variance Ratio × R²", fontsize=18)
         plt.ylabel("Variance Ratio × R²", fontsize=16)
         plt.xticks(range(len(layer_names)), x_axis_labels, rotation=45, fontsize=14)
         plt.yticks(fontsize=14)
@@ -388,4 +402,62 @@ def plot_group_molecules_regression_lens(
         plt.legend(loc='best', fontsize=12)
         plt.tight_layout()
         plt.savefig(Path(results_dir) / "group_variance_ratio_times_R2.pdf", dpi=300, bbox_inches="tight")
+        plt.close()
+        
+        # Plot variance ratio for each cluster/group (separate plot)
+        plt.figure(figsize=(12, 8))
+        
+        for i, (group_name, group_data) in enumerate(group_items):
+            # Calculate variance ratio for this group: group variance / target variance
+            variance_ratios = [group_data["variance"][layer] / target_variance for layer in layer_names]
+            plt.plot(range(len(layer_names)), variance_ratios, 'o-', alpha=0.8, 
+                    label=group_name, color=colors[i], linewidth=2, markersize=8)
+        
+        plt.title(f"{title} - Group Variance Ratio", fontsize=18)
+        plt.ylabel("Variance Ratio", fontsize=16)
+        plt.xticks(range(len(layer_names)), x_axis_labels, rotation=45, fontsize=14)
+        plt.yticks(fontsize=14)
+        plt.grid(True, alpha=0.3)
+        plt.legend(loc='best', fontsize=12)
+        plt.tight_layout()
+        plt.savefig(Path(results_dir) / "group_variance_ratio.pdf", dpi=300, bbox_inches="tight")
+        plt.close()
+        
+        # Plot R² for each group across layers (separate plot)
+        plt.figure(figsize=(12, 8))
+        
+        # Plot R² for each group
+        for i, (group_name, group_data) in enumerate(group_items):
+            # Check if this group has R² scores
+            if "r2_scores" in group_data:
+                group_r2_values = [group_data["r2_scores"][layer] for layer in layer_names]
+                plt.plot(range(len(layer_names)), group_r2_values, 'o-', alpha=0.8, 
+                        label=group_name, color=colors[i], linewidth=2, markersize=8)
+        
+        plt.title(f"{title} - Group R²", fontsize=18)
+        plt.ylabel("R² Score", fontsize=16)
+        plt.xticks(range(len(layer_names)), x_axis_labels, rotation=45, fontsize=14)
+        plt.yticks(fontsize=14)
+        plt.grid(True, alpha=0.3)
+        plt.legend(loc='best', fontsize=12)
+        plt.tight_layout()
+        plt.savefig(Path(results_dir) / "group_R2_across_layers.pdf", dpi=300, bbox_inches="tight")
+        plt.close()
+        
+        # Plot global R² across layers (separate plot)
+        plt.figure(figsize=(12, 8))
+        
+        # Use a color from the turbo colormap for consistency
+        r2_color = plt.cm.turbo(0.7)  # Use a distinctive color from turbo palette
+        plt.plot(range(len(layer_names)), r2_values, 'o-', alpha=0.8, 
+                color=r2_color, linewidth=2, markersize=8, label='R²')
+        
+        plt.title(f"{title} - R²", fontsize=18)
+        plt.ylabel("R² Score", fontsize=16)
+        plt.xticks(range(len(layer_names)), x_axis_labels, rotation=45, fontsize=14)
+        plt.yticks(fontsize=14)
+        plt.grid(True, alpha=0.3)
+        plt.legend(loc='best', fontsize=12)
+        plt.tight_layout()
+        plt.savefig(Path(results_dir) / "global_R2_across_layers.pdf", dpi=300, bbox_inches="tight")
         plt.close()
