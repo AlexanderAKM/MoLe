@@ -368,7 +368,7 @@ def plot_group_molecules_regression_lens(
         plt.plot(range(len(layer_names)), variance_ratio_values, 'o-', linewidth=2, markersize=10, color=metric_colors[0], label='Variance Ratio')
         plt.plot(range(len(layer_names)), r2_values, 'o-', linewidth=2, markersize=10, color=metric_colors[1], label='R²')
         
-        plt.title(f"{title} - Variance and R²", fontsize=18)
+        plt.title(f"{title} - Variance ratio and R²", fontsize=18)
         plt.ylabel("Variance Ratio and R²", fontsize=16)
         plt.xticks(range(len(layer_names)), x_axis_labels, rotation=45, fontsize=14)
         plt.yticks(fontsize=14)
@@ -394,14 +394,14 @@ def plot_group_molecules_regression_lens(
             plt.plot(range(len(layer_names)), variance_ratio_times_r2, 'o-', alpha=0.8, 
                     label=group_name, color=colors[i], linewidth=2, markersize=8)
         
-        plt.title(f"{title} - Group Variance Ratio × R²", fontsize=18)
+        plt.title(f"{title} - Cluster Variance Ratio × Global R²", fontsize=18)
         plt.ylabel("Variance Ratio × R²", fontsize=16)
         plt.xticks(range(len(layer_names)), x_axis_labels, rotation=45, fontsize=14)
         plt.yticks(fontsize=14)
         plt.grid(True, alpha=0.3)
         plt.legend(loc='best', fontsize=12)
         plt.tight_layout()
-        plt.savefig(Path(results_dir) / "group_variance_ratio_times_R2.pdf", dpi=300, bbox_inches="tight")
+        plt.savefig(Path(results_dir) / "cluster_variance_ratio_times_R2.pdf", dpi=300, bbox_inches="tight")
         plt.close()
         
         # Plot variance ratio for each cluster/group (separate plot)
@@ -413,14 +413,14 @@ def plot_group_molecules_regression_lens(
             plt.plot(range(len(layer_names)), variance_ratios, 'o-', alpha=0.8, 
                     label=group_name, color=colors[i], linewidth=2, markersize=8)
         
-        plt.title(f"{title} - Group Variance Ratio", fontsize=18)
+        plt.title(f"{title} - Cluster Variance Ratio", fontsize=18)
         plt.ylabel("Variance Ratio", fontsize=16)
         plt.xticks(range(len(layer_names)), x_axis_labels, rotation=45, fontsize=14)
         plt.yticks(fontsize=14)
         plt.grid(True, alpha=0.3)
         plt.legend(loc='best', fontsize=12)
         plt.tight_layout()
-        plt.savefig(Path(results_dir) / "group_variance_ratio.pdf", dpi=300, bbox_inches="tight")
+        plt.savefig(Path(results_dir) / "cluster_variance_ratio.pdf", dpi=300, bbox_inches="tight")
         plt.close()
         
         # Plot R² for each group across layers (separate plot)
@@ -434,14 +434,14 @@ def plot_group_molecules_regression_lens(
                 plt.plot(range(len(layer_names)), group_r2_values, 'o-', alpha=0.8, 
                         label=group_name, color=colors[i], linewidth=2, markersize=8)
         
-        plt.title(f"{title} - Group R²", fontsize=18)
+        plt.title(f"{title} - Cluster R²", fontsize=18)
         plt.ylabel("R² Score", fontsize=16)
         plt.xticks(range(len(layer_names)), x_axis_labels, rotation=45, fontsize=14)
         plt.yticks(fontsize=14)
         plt.grid(True, alpha=0.3)
         plt.legend(loc='best', fontsize=12)
         plt.tight_layout()
-        plt.savefig(Path(results_dir) / "group_R2_across_layers.pdf", dpi=300, bbox_inches="tight")
+        plt.savefig(Path(results_dir) / "cluster_R2_across_layers.pdf", dpi=300, bbox_inches="tight")
         plt.close()
         
         # Plot global R² across layers (separate plot)
@@ -452,7 +452,7 @@ def plot_group_molecules_regression_lens(
         plt.plot(range(len(layer_names)), r2_values, 'o-', alpha=0.8, 
                 color=r2_color, linewidth=2, markersize=8, label='R²')
         
-        plt.title(f"{title} - R²", fontsize=18)
+        plt.title(f"{title} - Global R²", fontsize=18)
         plt.ylabel("R² Score", fontsize=16)
         plt.xticks(range(len(layer_names)), x_axis_labels, rotation=45, fontsize=14)
         plt.yticks(fontsize=14)
