@@ -53,10 +53,10 @@ test_smiles = "CCO" # arbitrary
 inputs = tokenizer(test_smiles, return_tensors="pt").to(DEVICE)
 
 conversion_results = validate_conversion(hf_encoder, tl_encoder, inputs["input_ids"], inputs["attention_mask"])
-print(f"The difference between the final embeddings are less than 0.001: {conversion_results["final_output"] < 0.001}")
+print(f"The difference between the final embeddings are less than 0.001: {conversion_results['final_output'] < 0.001}")
 
 prediction_results = test_prediction_equivalence(hf_regressor, tl_regressor, [test_smiles], tokenizer, DEVICE)
-print(f"The predictions are equivalent: {prediction_results["is_equivalent"]}")
+print(f"The predictions are equivalent: {prediction_results['is_equivalent']}")
 # %% [markdown]
 # Let's run ablation studies to see the effect of misssing components
 test_data = pd.read_csv(TEST_PATH)
@@ -86,14 +86,14 @@ median_idx = len(full_data) // 2
 median_molecule = full_data.sort_values(TARGET_COLUMN).iloc[median_idx]["smiles"]
 
 # Flatten the list to get a simple list of SMILES strings
-max_smiles = full_data.nlargest(1128/2, TARGET_COLUMN)["smiles"].to_list()
-min_smiles = full_data.nsmallest(1128/2, TARGET_COLUMN)["smiles"].to_list()
+max_smiles = full_data.nlargest(1128//2, TARGET_COLUMN)["smiles"].to_list()
+min_smiles = full_data.nsmallest(1128//2, TARGET_COLUMN)["smiles"].to_list()
 min_max_median_molecules = max_smiles + [median_molecule] + min_smiles
 
 # Get actual target values for these molecules (also flattened)
-max_targets = full_data.nlargest(1128/2, TARGET_COLUMN)[TARGET_COLUMN].to_list()
+max_targets = full_data.nlargest(1128//2, TARGET_COLUMN)[TARGET_COLUMN].to_list()
 median_target = full_data.sort_values(TARGET_COLUMN).iloc[median_idx][TARGET_COLUMN]
-min_targets = full_data.nsmallest(1128/2, TARGET_COLUMN)[TARGET_COLUMN].to_list()
+min_targets = full_data.nsmallest(1128//2, TARGET_COLUMN)[TARGET_COLUMN].to_list()
 actual_targets = max_targets + [median_target] + min_targets
 
 results = run_regression_lens(tl_encoder, tl_regressor, scaler, min_max_median_molecules, tokenizer)
@@ -165,10 +165,10 @@ test_smiles = "CCO"
 inputs = tokenizer(test_smiles, return_tensors="pt").to(DEVICE)
 
 conversion_results = validate_conversion(hf_encoder, tl_encoder, inputs["input_ids"], inputs["attention_mask"])
-print(f"The difference between the final embeddings are less than 0.001: {conversion_results["final_output"] < 0.001}")
+print(f"The difference between the final embeddings are less than 0.001: {conversion_results['final_output'] < 0.001}")
 
 prediction_results = test_prediction_equivalence(hf_regressor, tl_regressor, [test_smiles], tokenizer, DEVICE)
-print(f"The predictions are equivalent: {prediction_results["is_equivalent"]}")
+print(f"The predictions are equivalent: {prediction_results['is_equivalent']}")
 # %% [markdown]
 # Let's run ablation studies to see the effect of misssing components
 test_data = pd.read_csv(TEST_PATH)
@@ -251,10 +251,10 @@ test_smiles = "CCO"
 inputs = tokenizer(test_smiles, return_tensors="pt").to(DEVICE)
 
 conversion_results = validate_conversion(hf_encoder, tl_encoder, inputs["input_ids"], inputs["attention_mask"])
-print(f"The difference between the final embeddings are less than 0.001: {conversion_results["final_output"] < 0.001}")
+print(f"The difference between the final embeddings are less than 0.001: {conversion_results['final_output'] < 0.001}")
 
 prediction_results = test_prediction_equivalence(hf_regressor, tl_regressor, [test_smiles], tokenizer, DEVICE)
-print(f"The predictions are equivalent: {prediction_results["is_equivalent"]}")
+print(f"The predictions are equivalent: {prediction_results['is_equivalent']}")
 # %% [markdown]
 # Let's run ablation studies to see the effect of misssing components
 test_data = pd.read_csv(TEST_PATH)
@@ -273,9 +273,9 @@ plot_ablation_metrics(results, Path("results/hce"))
 # on the training data
 import pickle
 with open("results/hce/ablation/all_results.pkl", "rb") as f:
-    qm9_results = pickle.load(f)
+    hce_results = pickle.load(f)
     
-plot_ablation_metrics(qm9_results, Path("results/hce"), title = "HCE")
+plot_ablation_metrics(hce_results, Path("results/hce"), title = "HCE")
 
 # %%
 median_idx = len(full_data) // 2

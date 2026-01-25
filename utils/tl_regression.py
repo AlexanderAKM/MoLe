@@ -333,7 +333,7 @@ def plot_group_molecules_regression_lens(
         plt.close()
 
     # Plot variance ratio times R^2 if it exists in results
-    if "variance_ratio" and "r2_scores" in results:
+    if "variance_ratio" in results and "r2_scores" in results:
         variance_ratios = results["variance_ratio"]
         r2_scores = results["r2_scores"]
         ratios = [variance_ratios[layer] * r2_scores[layer] for layer in layer_names]
@@ -354,7 +354,7 @@ def plot_group_molecules_regression_lens(
         plt.close()
 
     # Plot variance and R^2 if it exists in results
-    if "variance_ratio" and "r2_scores" in results:
+    if "variance_ratio" in results and "r2_scores" in results:
         variance_ratios = results["variance_ratio"]
         r2_scores = results["r2_scores"]
         
@@ -379,7 +379,7 @@ def plot_group_molecules_regression_lens(
         plt.close()
 
     # Plot variance ratio × R² for each cluster/group
-    if "variance_ratio" and "r2_scores" and "target_variance" in results:
+    if "variance_ratio" in results and "r2_scores" in results and "target_variance" in results:
         r2_scores = results["r2_scores"]
         r2_values = [r2_scores[layer] for layer in layer_names]
         target_variance = results["target_variance"]

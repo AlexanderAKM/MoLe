@@ -74,8 +74,8 @@ for ci in range(4):
     print(f"Cluster {ci}: {len(smiles_list)} Molecules")
     molecules_list = [rdc.MolFromSmiles(si) for si in smiles_list]
     grid = rdcd.MolsToGridImage(molecules_list[:9], returnPNG=False)
-    grid.save(f'clustered_data/hce/{ci}.png')
+    grid.save(f'../clustered_data/hce/{ci}.png')
 
-data_hce.to_csv("clustered_data/hce/hce.csv", index=False)
+data_hce.to_csv("../clustered_data/hce/hce.csv", index=False)
 print("\nAll datasets processed successfully!")
 # %%

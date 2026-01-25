@@ -244,11 +244,11 @@ def comprehensive_validation(model_path: str, test_csv: str,
     
     device = device or ("cuda" if torch.cuda.is_available() else "cpu")
     
-    print("🔍 Running comprehensive validation...")
+    print("Running comprehensive validation...")
     
     # Load models
     print("Loading models...")
-    hf_encoder, tl_encoder, tokenizer, hf_regressor, _ = load_chemberta_models(
+    hf_encoder, tl_encoder, tokenizer, hf_regressor, tl_regressor, scaler = load_chemberta_models(
         model_path, tokenizer_name, device
     )
     
@@ -263,11 +263,14 @@ def comprehensive_validation(model_path: str, test_csv: str,
     
     # Test evaluation metrics
     print("Running evaluation metrics...")
+    test_data = pd.read_csv(test_csv)
     hf_metrics = run_evaluation_metrics(
-        model_path, test_csv, tokenizer_name, device=device, use_tl_model=False, smiles_col=smiles, target_col=target
+        hf_regressor, test_data, tokenizer, smiles_column=smiles, target_column=target, 
+        device=device, use_tl_model=False, scaler=scaler
     )
     tl_metrics = run_evaluation_metrics(
-        model_path, test_csv, tokenizer_name, device=device, use_tl_model=True, smiles_col=smiles, target_col=target
+        tl_regressor, test_data, tokenizer, smiles_column=smiles, target_column=target,
+        device=device, use_tl_model=True, scaler=scaler
     )
     
     # Test prediction equivalence
@@ -276,7 +279,7 @@ def comprehensive_validation(model_path: str, test_csv: str,
     
     print("Testing prediction equivalence...")
     prediction_results = test_prediction_equivalence(
-        model_path, test_molecules, tokenizer_name, device
+        hf_regressor, tl_regressor, test_molecules, tokenizer, device
     )
     
     # Compile results

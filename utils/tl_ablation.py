@@ -4,26 +4,26 @@ This module provides systematic ablation studies to understand the importance
 of different model components (MLP neurons, attention heads) by measuring 
 performance degradation when they are removed or zeroed out.
 
-from utils.tl_ablation import run_ablation_analysis_with_metrics
+Example usage::
 
-# Assuming you have true target values for your test molecules
-results = run_ablation_analysis_with_metrics(
-    tl_model=tl_encoder,
-    regressor=tl_regressor,
-    test_molecules=test_smiles,
-    true_targets=test_targets,  
-    tokenizer=tokenizer,
-    ablation_percentages=[0.0, 0.2, 0.5, 0.8],
-    n_seeds=3,
-    output_dir=Path("results"),
-)
+    from utils.tl_ablation import run_ablation_analysis_with_metrics
 
+    # Assuming you have true target values for your test molecules
+    results = run_ablation_analysis_with_metrics(
+        tl_model=tl_encoder,
+        regressor=tl_regressor,
+        test_molecules=test_smiles,
+        true_targets=test_targets,  
+        tokenizer=tokenizer,
+        ablation_percentages=[0.0, 0.2, 0.5, 0.8],
+        n_seeds=3,
+        output_dir=Path("results"),
+    )
 
-# Results now include metric degradation and combined ablation:
-print(f"50% MLP ablation MAE: {results['mlp_ablation'][0.5]['mean_mae_denorm']:.4f}")
-print(f"50% attention ablation R²: {results['attention_ablation'][0.5]['mean_r2_denorm']:.4f}")
-print(f"50% combined ablation MAE: {results['combined_ablation'][0.5]['mean_mae_denorm']:.4f}")
-```
+    # Results now include metric degradation and combined ablation:
+    print(f"50% MLP ablation MAE: {results['mlp_ablation'][0.5]['mean_mae_denorm']:.4f}")
+    print(f"50% attention ablation R²: {results['attention_ablation'][0.5]['mean_r2_denorm']:.4f}")
+    print(f"50% combined ablation MAE: {results['combined_ablation'][0.5]['mean_mae_denorm']:.4f}")
 
 Key functions:
 - ablate_neurons_by_percentage(): Remove random percentages of MLP neurons 

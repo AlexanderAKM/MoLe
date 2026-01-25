@@ -6,14 +6,15 @@ class EncoderMLP(nn.Module):
     A flexible MLP that creates a network with decreasing hidden dimensions.
 
     The network architecture is built as follows:
-      - Linear interpolation is done between the input_dim and hidden_channels
-      - When used as an encoder, the final layer outputs hidden_channels.
+      - Linear interpolation is done between the input_dim and output_dim
+      - When used as an encoder, the final layer outputs output_dim (defaults to hidden_channels).
  
 
     Args:
         input_dim (int): Dimensionality of the input.
         hidden_channels (int): Base hidden dimension.
         num_layers (int): Number of layers used in the encoder (for the decreasing sizes).
+        output_dim (int): Output dimension. If None, defaults to hidden_channels.
         dropout (float): Dropout rate applied after each hidden layer.
     """
 
@@ -22,17 +23,21 @@ class EncoderMLP(nn.Module):
         input_dim: int = 10,
         hidden_channels: int = 32,
         num_layers: int = 3,
+        output_dim: int = None,
         dropout: float = 0.0,
     ):
         super().__init__()
-        # Build a list of sizes: starting at input_dim then decreasing
-        # We'll do linear interpolation between the input_dim and hidden_channels
-        difference = hidden_channels - input_dim
+        # Use output_dim if provided, otherwise default to hidden_channels
+        if output_dim is None:
+            output_dim = hidden_channels
+            
+        # Build a list of sizes: starting at input_dim then interpolating to output_dim
+        difference = output_dim - input_dim
         delta = difference // num_layers
         
         sizes = [input_dim] + [
             input_dim + delta * (i + 1) for i in range(num_layers - 1)
-        ] + [hidden_channels]
+        ] + [output_dim]
             
         layers = []
         for i in range(len(sizes) - 1):

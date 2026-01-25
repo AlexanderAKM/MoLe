@@ -223,12 +223,8 @@ class FaithfulTLRegressor(nn.Module):
         # Convert to numpy for inverse transform
         predictions_np = predictions.detach().cpu().numpy()
         
-        # Apply inverse transform
-        denormalized = inverse_transform_target(
-            predictions_np, 
-            self.normalization_pipeline, 
-            self.target_column
-        )
+        # Apply inverse transform using scaler directly
+        denormalized = predictions_np * self.scaler.scale_[0] + self.scaler.mean_[0]
         
         # Convert back to tensor with same device/dtype
         return torch.from_numpy(denormalized).to(predictions.device).to(predictions.dtype)
@@ -301,7 +297,6 @@ def load_chemberta_models(model_path: str, tokenizer_name: str = "DeepChem/ChemB
     scaler = None
     if scaler_path and Path(scaler_path).exists():
         import pickle
-        print("yes")
         with open(scaler_path, 'rb') as f:
             scaler = pickle.load(f)
         print(f"Loaded scaler from {scaler_path}")
