@@ -81,6 +81,14 @@ class L1Trainer(Trainer):
 class ChembertaRegressor(nn.Module):
     """
     ChemBERTa regression model
+    
+    Args:
+        pretrained: Name of pretrained model
+        num_features: Number of additional features (not used currently)
+        dropout: Dropout rate
+        hidden_channels: Hidden layer size for MLP
+        num_mlp_layers: Number of MLP layers
+        freeze_encoder: If True, freeze the ChemBERTa encoder and only train the regression head
     """
 
     def __init__(
@@ -90,14 +98,19 @@ class ChembertaRegressor(nn.Module):
         dropout=0.3,
         hidden_channels=100,
         num_mlp_layers=1,
+        freeze_encoder=False,
     ):
         super().__init__()
         self.roberta = RobertaModel.from_pretrained(pretrained, add_pooling_layer=False)
-        # Freeze the base language model to avoid overfitting. 
-        # Currently commented for better performance.
-        # TODO: Choose which parts of the model actually require finetuning and freeze all other parts.
-        # for param in self.roberta.parameters():
-        #     param.requires_grad = False
+        self.freeze_encoder = freeze_encoder
+        
+        if freeze_encoder:
+            # Freeze the entire ChemBERTa encoder - only train the regression head
+            for param in self.roberta.parameters():
+                param.requires_grad = False
+            print("Encoder FROZEN: Only training the regression head")
+        else:
+            print("Encoder UNFROZEN: Training full model (encoder + regression head)")
 
         self.dropout = nn.Dropout(dropout)
         num_input_features = self.roberta.config.hidden_size
@@ -259,7 +272,8 @@ def evaluate_chemberta_model(
 
 
 def train_chemberta_model(
-    args, df_train, df_test, scaler, device=None, evaluate_after_training=True, dataset_name=None
+    args, df_train, df_test, scaler, device=None, evaluate_after_training=True, 
+    dataset_name=None, freeze_encoder=False, model_name="chemberta"
 ):
     """
     Train a ChemBERTa model for regression on SMILES data with one target value.
@@ -271,7 +285,9 @@ def train_chemberta_model(
         scaler: scaler used for normalization
         device: PyTorch device (optional)
         evaluate_after_training: Whether to evaluate on test set after training (default: True)
-        dataset_name: name of the dataset
+        dataset_name: Name of the dataset (used for output directory)
+        freeze_encoder: If True, freeze the encoder and only train the regression head
+        model_name: Name for the model subdirectory (e.g., "chemberta" or "chemberta_frozen")
 
     Returns:
         dict: Results including model, metrics, predictions, etc.
@@ -299,12 +315,13 @@ def train_chemberta_model(
         dropout=args.dropout,
         hidden_channels=args.hidden_channels,
         num_mlp_layers=args.num_mlp_layers,
+        freeze_encoder=freeze_encoder,
     )
 
     if not dataset_name:
         dataset_name = os.path.splitext(os.path.basename(args.train_csv))[0]
 
-    output_dir = os.path.join(args.output_dir, dataset_name, "chemberta")
+    output_dir = os.path.join(args.output_dir, dataset_name, model_name)
     os.makedirs(output_dir, exist_ok=True)
 
     training_args = TrainingArguments(

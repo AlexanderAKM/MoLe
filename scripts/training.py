@@ -11,10 +11,12 @@ from utils.normalizing import normalize_csv
 from utils.chemberta_workflows import train_chemberta_model
 # %%
 RANDOM_SEED = 19237
-# %%
-# For esol
 
-# Make an args parser
+# %%
+# =============================================================================
+# ESOL Training Configuration
+# =============================================================================
+
 esol_defaults = {
     'train_csv': '../clustered_data/esol/train_esol.csv',
     'test_csv': '../clustered_data/esol/test_esol.csv',
@@ -26,9 +28,9 @@ esol_defaults = {
     'lr': 0.001,
     'l1_lambda': 0.0,
     'l2_lambda': 0.01,
-    'dropout': 0.3,
-    'hidden_channels': 128,
-    'num_mlp_layers': 1,
+    'dropout': 0.3,  # dropout for single linear layer
+    'hidden_channels': 256,  # Not used when num_mlp_layers=1
+    'num_mlp_layers': 3,  # Single linear layer: 384 -> 1
     'random_seed': RANDOM_SEED,
 }
 
@@ -41,9 +43,45 @@ norm_train_esol, esol_scaler = normalize_csv(train_esol, target_col=esol_parser.
 norm_test_esol, _ = normalize_csv(test_esol, target_col=esol_parser.target_column, scaler=esol_scaler)
 
 # %%
-esol_results = train_chemberta_model(esol_parser, norm_train_esol, norm_test_esol, esol_scaler)
-esol_results
+# ESOL with FROZEN encoder (only regression head trained)
+# Architecture: Frozen ChemBERTa encoder -> Linear(384, 1)
+esol_frozen_results = train_chemberta_model(
+    esol_parser, 
+    norm_train_esol, 
+    norm_test_esol, 
+    esol_scaler,
+    dataset_name="train_esol",
+    freeze_encoder=True,
+    model_name="chemberta_frozen"
+)
+print("\n" + "="*60)
+print("ESOL FROZEN ENCODER TRAINING COMPLETE")
+print("Model saved to: trained_models/train_esol/chemberta_frozen/")
+print("="*60)
+esol_frozen_results
 
+# %%
+# ESOL with FULL finetuning (encoder + regression head trained)
+# Architecture: Trainable ChemBERTa encoder -> Linear(384, 1)
+esol_finetuned_results = train_chemberta_model(
+    esol_parser, 
+    norm_train_esol, 
+    norm_test_esol, 
+    esol_scaler,
+    dataset_name="train_esol",
+    freeze_encoder=False,
+    model_name="chemberta"
+)
+print("\n" + "="*60)
+print("ESOL FULL FINETUNING TRAINING COMPLETE")
+print("Model saved to: trained_models/train_esol/chemberta/")
+print("="*60)
+esol_finetuned_results
+
+# %%
+# =============================================================================
+# HCE and QM9 training 
+# =============================================================================
 
 # %%
 # For hce
