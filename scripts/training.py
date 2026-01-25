@@ -23,14 +23,14 @@ esol_defaults = {
     'target_column': 'solubility',
     'smiles_column': 'smiles',
     'output_dir': '../trained_models',
-    'epochs': 20,
+    'epochs': 100,
     'batch_size': 16,
     'lr': 0.001,
     'l1_lambda': 0.0,
     'l2_lambda': 0.01,
     'dropout': 0.3,  # dropout for single linear layer
     'hidden_channels': 256,  # Not used when num_mlp_layers=1
-    'num_mlp_layers': 3,  # Single linear layer: 384 -> 1
+    'num_mlp_layers': 1,  # Single linear layer: 384 -> 1
     'random_seed': RANDOM_SEED,
 }
 
