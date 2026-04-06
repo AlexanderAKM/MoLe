@@ -26,24 +26,23 @@ def clustering(data, target_column, output_dir, dataset_name='dataset'):
     # Compute fingerprints
     fingerprints = [fingerprint_generator.GetFingerprint(rdc.MolFromSmiles(si)) for si in list(data['smiles'].values)]
 
-    # Random subsampling
-    fingerprints_references = rd.sample(fingerprints, min(number_of_references, number_of_molecules)) # Random subsampling instead of property-based subsampling
-    
-    # Initiate pairwise similarities array
-    similarities = np.zeros((number_of_molecules, number_of_references), dtype=np.float32)
+    # Random subsampling (cannot have more references than molecules)
+    fingerprints_references = rd.sample(fingerprints, min(number_of_references, number_of_molecules))
+    n_ref = len(fingerprints_references)
 
-    # Compute pairwise similarities
+    similarities = np.zeros((number_of_molecules, n_ref), dtype=np.float32)
     for ri in range(number_of_molecules):
         similarities[ri, :] = rdd.BulkTanimotoSimilarity(fingerprints[ri], fingerprints_references)
 
     # Perform PCA with all components and a random subset of the molecules
     subset_size = int(0.05 * number_of_molecules) if number_of_molecules > 20000 else min(number_of_molecules, 1000)
-    pca = skd.IncrementalPCA(n_components=number_of_references)
+    pca = skd.IncrementalPCA(n_components=n_ref)
     pca.fit(similarities[np.random.choice(similarities.shape[0], size=subset_size, replace=False), :])
 
     # Only take principal components that cumulatively explain x% of the total variance
     total_variance_explained = 0.80 # hyperparameter
     number_of_components = len([np.sum(pca.explained_variance_ratio_[:ni]) for ni in range(number_of_molecules) if np.sum(pca.explained_variance_ratio_[:ni]) < total_variance_explained])
+    number_of_components = max(1, min(number_of_components, n_ref))
     print(f'Number of dominant principal components: {number_of_components}')
 
     # Redo PCA with significant components
@@ -108,24 +107,23 @@ def clustering_hce(data, target_column, output_dir, dataset_name='dataset'):
     # Compute fingerprints
     fingerprints = [fingerprint_generator.GetFingerprint(rdc.MolFromSmiles(si)) for si in list(data['smiles'].values)]
 
-    # Random subsampling
-    fingerprints_references = rd.sample(fingerprints, min(number_of_references, number_of_molecules)) # Random subsampling instead of property-based subsampling
-    
-    # Initiate pairwise similarities array
-    similarities = np.zeros((number_of_molecules, number_of_references), dtype=np.float32)
+    # Random subsampling (cannot have more references than molecules)
+    fingerprints_references = rd.sample(fingerprints, min(number_of_references, number_of_molecules))
+    n_ref = len(fingerprints_references)
 
-    # Compute pairwise similarities
+    similarities = np.zeros((number_of_molecules, n_ref), dtype=np.float32)
     for ri in range(number_of_molecules):
         similarities[ri, :] = rdd.BulkTanimotoSimilarity(fingerprints[ri], fingerprints_references)
 
     # Perform PCA with all components and a random subset of the molecules
     subset_size = int(0.05 * number_of_molecules) if number_of_molecules > 20000 else min(number_of_molecules, 1000)
-    pca = skd.IncrementalPCA(n_components=number_of_references)
+    pca = skd.IncrementalPCA(n_components=n_ref)
     pca.fit(similarities[np.random.choice(similarities.shape[0], size=subset_size, replace=False), :])
 
     # Only take principal components that cumulatively explain x% of the total variance
     total_variance_explained = 0.65 # hyperparameter
     number_of_components = len([np.sum(pca.explained_variance_ratio_[:ni]) for ni in range(number_of_molecules) if np.sum(pca.explained_variance_ratio_[:ni]) < total_variance_explained])
+    number_of_components = max(1, min(number_of_components, n_ref))
     print(f'Number of dominant principal components: {number_of_components}')
 
     # Redo PCA with significant components

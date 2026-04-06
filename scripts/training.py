@@ -1,11 +1,18 @@
 # %%
-import sys
-import os
-import pandas as pd
-import argparse
+from __future__ import annotations
 
-# Add parent directory to path for imports
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+import argparse
+import sys
+from pathlib import Path
+
+import pandas as pd
+
+_REPO = Path(__file__).resolve().parents[1]
+if str(_REPO) not in sys.path:
+    sys.path.insert(0, str(_REPO))
+
+_CLUSTER = _REPO / "clustered_data"
+_TRAINED = _REPO / "trained_models"
 
 from utils.normalizing import normalize_csv
 from utils.chemberta_workflows import train_chemberta_model
@@ -18,11 +25,11 @@ RANDOM_SEED = 19237
 # =============================================================================
 
 esol_defaults = {
-    'train_csv': '../clustered_data/esol/train_esol.csv',
-    'test_csv': '../clustered_data/esol/test_esol.csv',
+    'train_csv': str(_CLUSTER / 'esol' / 'train_esol.csv'),
+    'test_csv': str(_CLUSTER / 'esol' / 'test_esol.csv'),
     'target_column': 'solubility',
     'smiles_column': 'smiles',
-    'output_dir': '../trained_models',
+    'output_dir': str(_TRAINED),
     'epochs': 100,
     'batch_size': 16,
     'lr': 0.001,
@@ -86,11 +93,11 @@ esol_finetuned_results
 # %%
 # For hce
 hce_defaults = {
-    'train_csv': '../clustered_data/hce/train_hce.csv',
-    'test_csv': '../clustered_data/hce/test_hce.csv',
+    'train_csv': str(_CLUSTER / 'hce' / 'train_hce.csv'),
+    'test_csv': str(_CLUSTER / 'hce' / 'test_hce.csv'),
     'target_column': 'pce_1',
     'smiles_column': 'smiles',
-    'output_dir': '../trained_models',
+    'output_dir': str(_TRAINED),
     'epochs': 20,
     'batch_size': 16,
     'lr': 0.001,
@@ -117,11 +124,11 @@ hce_results
 # %% 
 # For qm9
 qm9_defaults = {
-    'train_csv': '../clustered_data/qm9/train_qm9.csv',
-    'test_csv': '../clustered_data/qm9/test_qm9.csv',
+    'train_csv': str(_CLUSTER / 'qm9' / 'train_qm9.csv'),
+    'test_csv': str(_CLUSTER / 'qm9' / 'test_qm9.csv'),
     'target_column': 'dga',
     'smiles_column': 'smiles',
-    'output_dir': '../trained_models',
+    'output_dir': str(_TRAINED),
     'epochs': 20,
     'batch_size': 16,
     'lr': 0.001,
@@ -135,9 +142,9 @@ qm9_defaults = {
 
 qm9_parser = argparse.Namespace(**qm9_defaults)
 
-train_qm9 = pd.read_csv("../clustered_data/qm9/train_qm9.csv")
-val_qm9 = pd.read_csv("../clustered_data/qm9/validation_qm9.csv")
-test_qm9 = pd.read_csv('../clustered_data/qm9/test_qm9.csv')
+train_qm9 = pd.read_csv(_CLUSTER / "qm9" / "train_qm9.csv")
+val_qm9 = pd.read_csv(_CLUSTER / "qm9" / "validation_qm9.csv")
+test_qm9 = pd.read_csv(_CLUSTER / "qm9" / "test_qm9.csv")
 norm_train_qm9, qm9_scaler = normalize_csv(train_qm9, target_col=qm9_parser.target_column)
 norm_val_qm9, _ = normalize_csv(val_qm9, target_col=qm9_parser.target_column, scaler=qm9_scaler)
 norm_test_qm9, _ = normalize_csv(test_qm9, target_col=qm9_parser.target_column, scaler=qm9_scaler)
