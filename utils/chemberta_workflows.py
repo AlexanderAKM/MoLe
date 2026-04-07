@@ -9,6 +9,7 @@ import os
 import json
 import time
 import pickle
+import math
 from datetime import datetime
 import argparse
 
@@ -324,14 +325,20 @@ def train_chemberta_model(
     output_dir = os.path.join(args.output_dir, dataset_name, model_name)
     os.makedirs(output_dir, exist_ok=True)
 
+    steps_per_epoch = max(1, math.ceil(len(train_dataset) / args.batch_size))
+    save_every_n_epochs = getattr(args, "save_every_n_epochs", 10)
+    save_steps = max(1, steps_per_epoch * save_every_n_epochs)
+    save_total_limit = getattr(args, "save_total_limit", None)
+
     training_args = TrainingArguments(
         output_dir=output_dir,
         num_train_epochs=args.epochs,
         per_device_train_batch_size=args.batch_size,
         per_device_eval_batch_size=args.batch_size,
-        eval_strategy="no",
-        save_strategy="epoch",
-        save_total_limit=1,
+        evaluation_strategy="no",
+        save_strategy="steps",
+        save_steps=save_steps,
+        save_total_limit=save_total_limit,
         learning_rate=args.lr,
         weight_decay=args.l2_lambda,
         load_best_model_at_end=False,
