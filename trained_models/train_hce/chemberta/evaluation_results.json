@@ -1,7 +1,7 @@
 {
   "metrics": {
     "test_loss": 0.15292887389659882,
-    "test_model_preparation_time": 0.0009,
+    "test_model_preparation_time": 0.0008,
     "test_normalized_mae": 0.23522500693798065,
     "test_normalized_mse": 0.15292887389659882,
     "test_normalized_rmse": 0.3910612150247053,
@@ -10,9 +10,9 @@
     "test_mse": 0.8289963827957058,
     "test_rmse": 0.9104923848092886,
     "test_r2": 0.8315542961194775,
-    "test_runtime": 11.9309,
-    "test_samples_per_second": 397.372,
-    "test_steps_per_second": 12.489
+    "test_runtime": 12.5177,
+    "test_samples_per_second": 378.744,
+    "test_steps_per_second": 11.903
   },
   "predictions": [
     2.5159389484694126,
