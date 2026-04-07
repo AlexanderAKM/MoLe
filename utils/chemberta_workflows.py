@@ -10,6 +10,7 @@ import json
 import time
 import pickle
 import math
+import inspect
 from datetime import datetime
 import argparse
 
@@ -330,12 +331,11 @@ def train_chemberta_model(
     save_steps = max(1, steps_per_epoch * save_every_n_epochs)
     save_total_limit = getattr(args, "save_total_limit", None)
 
-    training_args = TrainingArguments(
+    ta_kwargs = dict(
         output_dir=output_dir,
         num_train_epochs=args.epochs,
         per_device_train_batch_size=args.batch_size,
         per_device_eval_batch_size=args.batch_size,
-        evaluation_strategy="no",
         save_strategy="steps",
         save_steps=save_steps,
         save_total_limit=save_total_limit,
@@ -347,8 +347,16 @@ def train_chemberta_model(
         logging_strategy="epoch",
         logging_first_step=True,
         seed=args.random_seed,
-        report_to="none", 
+        report_to="none",
     )
+    # Transformers API differs across versions (eval_strategy vs evaluation_strategy).
+    ta_params = inspect.signature(TrainingArguments.__init__).parameters
+    if "evaluation_strategy" in ta_params:
+        ta_kwargs["evaluation_strategy"] = "no"
+    elif "eval_strategy" in ta_params:
+        ta_kwargs["eval_strategy"] = "no"
+
+    training_args = TrainingArguments(**ta_kwargs)
 
     compute_metrics = get_compute_metrics_fn(
         scaler=scaler,
