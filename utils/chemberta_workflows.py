@@ -329,7 +329,7 @@ def train_chemberta_model(
         num_train_epochs=args.epochs,
         per_device_train_batch_size=args.batch_size,
         per_device_eval_batch_size=args.batch_size,
-        eval_strategy="no",
+        evaluation_strategy="no",
         save_strategy="epoch",
         save_total_limit=1,
         learning_rate=args.lr,
