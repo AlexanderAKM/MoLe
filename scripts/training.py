@@ -34,6 +34,7 @@ _SHARED_HPARAMS = {
     'dropout': 0.3,
     'hidden_channels': 128,
     'num_mlp_layers': 1,
+    'early_stopping_patience': 10,
     'random_seed': RANDOM_SEED,
 }
 

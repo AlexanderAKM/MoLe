@@ -276,7 +276,7 @@ def evaluate_chemberta_model(
 def train_chemberta_model(
     args, df_train, df_test, scaler, df_val=None, device=None,
     evaluate_after_training=True, dataset_name=None, freeze_encoder=False,
-    model_name="chemberta", early_stopping_patience=5,
+    model_name="chemberta", early_stopping_patience=None,
 ):
     """
     Train a ChemBERTa model for regression on SMILES data with one target value.
@@ -294,7 +294,8 @@ def train_chemberta_model(
         freeze_encoder: If True, freeze the encoder and only train the regression head
         model_name: Name for the model subdirectory (e.g., "chemberta" or "chemberta_frozen")
         early_stopping_patience: Number of eval epochs with no val-loss improvement
-                                 before stopping (default: 5). Only used when df_val is provided.
+                                 before stopping. Defaults to args.early_stopping_patience if
+                                 available, otherwise 10. Only used when df_val is provided.
 
     Returns:
         dict: Results including model, metrics, predictions, etc.
@@ -342,6 +343,8 @@ def train_chemberta_model(
     save_steps = max(1, steps_per_epoch * save_every_n_epochs)
     save_total_limit = getattr(args, "save_total_limit", 2)
 
+    if early_stopping_patience is None:
+        early_stopping_patience = getattr(args, "early_stopping_patience", 10)
     use_early_stopping = val_dataset is not None
 
     ta_kwargs = dict(
