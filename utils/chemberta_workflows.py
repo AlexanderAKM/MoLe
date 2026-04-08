@@ -340,7 +340,7 @@ def train_chemberta_model(
     steps_per_epoch = max(1, math.ceil(len(train_dataset) / args.batch_size))
     save_every_n_epochs = getattr(args, "save_every_n_epochs", 10)
     save_steps = max(1, steps_per_epoch * save_every_n_epochs)
-    save_total_limit = getattr(args, "save_total_limit", None)
+    save_total_limit = getattr(args, "save_total_limit", 2)
 
     use_early_stopping = val_dataset is not None
 

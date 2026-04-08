@@ -29,6 +29,7 @@ _SHARED_HPARAMS = {
     'epochs': 100,
     'batch_size': 32,
     'lr': 5e-5,
+    'l1_lambda': 0.0,
     'l2_lambda': 0.01,
     'dropout': 0.3,
     'hidden_channels': 128,
