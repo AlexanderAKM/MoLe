@@ -22,7 +22,7 @@ import transformer_lens as tl
 
 from .tl_conversion import load_chemberta_models, FaithfulTLRegressor
 from .chemberta_dataset import ChembertaDataset
-from models.chemberta_regressor import ChembertaRegressorWithFeatures
+from mole.models.chemberta_regressor import ChembertaRegressorWithFeatures
 
 
 def validate_conversion(hf_model: RobertaModel, tl_model: tl.HookedEncoder, 

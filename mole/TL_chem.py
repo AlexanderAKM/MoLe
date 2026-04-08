@@ -17,24 +17,25 @@ from pathlib import Path
 import torch
 import pandas as pd
 import os
-import sys
 
-from utils.tl_conversion import load_chemberta_models
-from utils.tl_validation import validate_conversion, test_prediction_equivalence
-from utils.tl_ablation import run_ablation_analysis_with_metrics, plot_ablation_metrics
-from utils.tl_regression import run_regression_lens, plot_individual_molecules_regression_lens
-from utils.tl_regression import compare_molecule_groups_regression_lens, plot_group_molecules_regression_lens
+_REPO = Path(__file__).resolve().parents[1]
+
+from mole.utils.tl_conversion import load_chemberta_models
+from mole.utils.tl_validation import validate_conversion, test_prediction_equivalence
+from mole.utils.tl_ablation import run_ablation_analysis_with_metrics, plot_ablation_metrics
+from mole.utils.tl_regression import run_regression_lens, plot_individual_molecules_regression_lens
+from mole.utils.tl_regression import compare_molecule_groups_regression_lens, plot_group_molecules_regression_lens
 
 # %%
 # For ESOL
-MODEL_PATH = "trained_models/train_esol/chemberta/chemberta_model_final.bin"
-FULL_PATH = "clustered_data/esol/esol.csv"
-TEST_PATH = "clustered_data/esol/test_esol.csv"
-TRAIN_PATH = "clustered_data/esol/train_esol.csv"
+MODEL_PATH = str(_REPO / "trained_models/train_esol/chemberta/chemberta_model_final.bin")
+FULL_PATH = str(_REPO / "clustered_data/esol/esol.csv")
+TEST_PATH = str(_REPO / "clustered_data/esol/test_esol.csv")
+TRAIN_PATH = str(_REPO / "clustered_data/esol/train_esol.csv")
 TOKENIZER_NAME = "DeepChem/ChemBERTa-77M-MLM"
 DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
 
-SCALER_PATH = "trained_models/train_esol/chemberta/normalization_scaler.pkl"
+SCALER_PATH = str(_REPO / "trained_models/train_esol/chemberta/normalization_scaler.pkl")
 TARGET_COLUMN = "solubility"
 print(DEVICE)
 
@@ -66,17 +67,17 @@ targets = test_data[TARGET_COLUMN].to_list()
 print(f"Testing ablation on {len(test_molecules)} molecules")
 print(f"Target range: {min(targets):.3f} to {max(targets):.3f}")
 
-esol_results = run_ablation_analysis_with_metrics(tl_encoder, tl_regressor, tokenizer, test_data, target_column=TARGET_COLUMN, output_dir=Path("results/esol"), n_seeds=10, scaler=scaler)
-plot_ablation_metrics(esol_results, Path("results/esol"))
+esol_results = run_ablation_analysis_with_metrics(tl_encoder, tl_regressor, tokenizer, test_data, target_column=TARGET_COLUMN, output_dir=_REPO / "results/esol", n_seeds=10, scaler=scaler)
+plot_ablation_metrics(esol_results, _REPO / "results/esol")
 
 # %%
 import pickle
 
 # Load saved ablation results
-with open("results/esol/ablation/all_results.pkl", "rb") as f:
+with open(_REPO / "results/esol/ablation/all_results.pkl", "rb") as f:
     esol_results = pickle.load(f)
     
-plot_ablation_metrics(esol_results, Path("results/esol"))
+plot_ablation_metrics(esol_results, _REPO / "results/esol")
 
 # %% [markdown]
 # We move on to regression lens
@@ -99,7 +100,7 @@ actual_targets = max_targets + [median_target] + min_targets
 results = run_regression_lens(tl_encoder, tl_regressor, scaler, min_max_median_molecules, tokenizer)
 plot_individual_molecules_regression_lens(
     results, 
-    results_dir=Path("results/esol/example_regression_lens"), 
+    results_dir=_REPO / "results/esol/example_regression_lens", 
     molecule_labels=[f"Molecule {i+1}" for i in range(1129)], 
     actual_targets=actual_targets, 
     target_labels=[f"rank {i+1}" for i in range(1129)]
@@ -116,7 +117,7 @@ results
 #     "Alkanes": ["CC", "CCC", "CCCCCCCCCC"]
 # }
 # example_group_results = compare_molecule_groups_regression_lens(tl_encoder, tl_regressor, scaler, example_molecule_groups, tokenizer, DEVICE)
-# plot_group_molecules_regression_lens(example_group_results, results_dir=Path("results/ESOL/example_regression_lens"))
+# plot_group_molecules_regression_lens(example_group_results, results_dir=_REPO / "results/ESOL/example_regression_lens")
 
 # With clustering - build both groups and targets in one pass to ensure alignment
 molecule_groups = {}
@@ -128,9 +129,9 @@ for cluster, group in full_data.groupby('cluster'):
 
 group_results = compare_molecule_groups_regression_lens(
     tl_encoder, tl_regressor, scaler, molecule_groups, tokenizer, 
-    targets=ordered_targets, results_dir="results/esol/regression_lens", device=DEVICE
+    targets=ordered_targets, results_dir=str(_REPO / "results/esol/regression_lens"), device=DEVICE
 )
-plot_group_molecules_regression_lens(group_results, results_dir=Path("results/esol/regression_lens"))
+plot_group_molecules_regression_lens(group_results, results_dir=_REPO / "results/esol/regression_lens")
 
 
 
@@ -139,14 +140,14 @@ plot_group_molecules_regression_lens(group_results, results_dir=Path("results/es
 
 # %% 
 # Now for **qm9 dataset**
-MODEL_PATH = "trained_models/train_qm9_1/chemberta/chemberta_model_final.bin"
-FULL_PATH = "clustered_data/qm9/qm9.csv"
-TEST_PATH = "clustered_data/qm9/test_qm9.csv"
-TRAIN_PATH = "clustered_data/qm9/train_qm9.csv"
+MODEL_PATH = str(_REPO / "trained_models/train_qm9_1/chemberta/chemberta_model_final.bin")
+FULL_PATH = str(_REPO / "clustered_data/qm9/qm9.csv")
+TEST_PATH = str(_REPO / "clustered_data/qm9/test_qm9.csv")
+TRAIN_PATH = str(_REPO / "clustered_data/qm9/train_qm9.csv")
 TOKENIZER_NAME = "DeepChem/ChemBERTa-77M-MLM"
 DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
 
-SCALER_PATH = "trained_models/train_qm9_1/chemberta/normalization_scaler.pkl"
+SCALER_PATH = str(_REPO / "trained_models/train_qm9_1/chemberta/normalization_scaler.pkl")
 TARGET_COLUMN = "dga"
 print(DEVICE)
 # %%
@@ -178,16 +179,16 @@ targets = test_data[TARGET_COLUMN].to_list()
 print(f"Testing ablation on {len(test_molecules)} molecules")
 print(f"Target range: {min(targets):.3f} to {max(targets):.3f}")
 
-results = run_ablation_analysis_with_metrics(tl_encoder, tl_regressor, tokenizer, test_data, target_column=TARGET_COLUMN, output_dir=Path("results/qm9"), n_seeds=10, scaler=scaler)
+results = run_ablation_analysis_with_metrics(tl_encoder, tl_regressor, tokenizer, test_data, target_column=TARGET_COLUMN, output_dir=_REPO / "results/qm9", n_seeds=10, scaler=scaler)
 # %% [markdown]
 # We move on to regression lens
 # We pick the molecules with the largest, smallest, and median target value to showcase the technique
 # on the training data
 import pickle
-with open("results/qm9_1/ablation/all_results.pkl", "rb") as f:
+with open(_REPO / "results/qm9_1/ablation/all_results.pkl", "rb") as f:
     qm9_results = pickle.load(f)
     
-plot_ablation_metrics(qm9_results, Path("results/qm9_1"), title = "QM9")
+plot_ablation_metrics(qm9_results, _REPO / "results/qm9_1", title = "QM9")
 
 # %%
 median_idx = len(full_data) // 2
@@ -206,7 +207,7 @@ actual_targets = [
 min_max_median_molecules
 
 results = run_regression_lens(tl_encoder, tl_regressor, scaler, min_max_median_molecules, tokenizer)
-plot_individual_molecules_regression_lens(results, results_dir=Path("results/qm9_1/example_regression_lens"), molecule_labels = ["Molecule 4", "Molecule 5", "Molecule 6"], y_label = "Gibbs Free Energies of Atomization At 298K", title = "QM9", actual_targets=actual_targets, target_labels=["maximum", "median", "minimum"])
+plot_individual_molecules_regression_lens(results, results_dir=_REPO / "results/qm9_1/example_regression_lens", molecule_labels = ["Molecule 4", "Molecule 5", "Molecule 6"], y_label = "Gibbs Free Energies of Atomization At 298K", title = "QM9", actual_targets=actual_targets, target_labels=["maximum", "median", "minimum"])
 
 # %% 
 # With clustering - build both groups and targets in one pass to ensure alignment
@@ -219,20 +220,20 @@ for cluster, group in full_data.groupby('cluster'):
 
 group_results = compare_molecule_groups_regression_lens(
     tl_encoder, tl_regressor, scaler, molecule_groups, tokenizer,
-    targets=ordered_targets, results_dir="results/qm9_1/regression_lens", device=DEVICE
+    targets=ordered_targets, results_dir=str(_REPO / "results/qm9_1/regression_lens"), device=DEVICE
 )
-plot_group_molecules_regression_lens(group_results, results_dir=Path("results/qm9_1/regression_lens"), mean_y_label = "Mean Gibbs Free Energies of Atomization At 298K", var_y_label = "Variance Gibbs Free Energies of Atomization At 298K", title = "QM9")
+plot_group_molecules_regression_lens(group_results, results_dir=_REPO / "results/qm9_1/regression_lens", mean_y_label = "Mean Gibbs Free Energies of Atomization At 298K", var_y_label = "Variance Gibbs Free Energies of Atomization At 298K", title = "QM9")
 
 # %%
 # Now for **hce dataset**
-MODEL_PATH = "trained_models/train_hce/chemberta/chemberta_model_final.bin"
-FULL_PATH = "clustered_data/hce/hce.csv"
-TEST_PATH = "clustered_data/hce/test_hce.csv"
-TRAIN_PATH = "clustered_data/hce/train_hce.csv"
+MODEL_PATH = str(_REPO / "trained_models/train_hce/chemberta/chemberta_model_final.bin")
+FULL_PATH = str(_REPO / "clustered_data/hce/hce.csv")
+TEST_PATH = str(_REPO / "clustered_data/hce/test_hce.csv")
+TRAIN_PATH = str(_REPO / "clustered_data/hce/train_hce.csv")
 TOKENIZER_NAME = "DeepChem/ChemBERTa-77M-MLM"
 DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
 
-SCALER_PATH = "trained_models/train_hce/chemberta/normalization_scaler.pkl"
+SCALER_PATH = str(_REPO / "trained_models/train_hce/chemberta/normalization_scaler.pkl")
 TARGET_COLUMN = "pce_1"
 print(DEVICE)
 # %%
@@ -264,18 +265,18 @@ targets = test_data[TARGET_COLUMN].to_list()
 print(f"Testing ablation on {len(test_molecules)} molecules")
 print(f"Target range: {min(targets):.3f} to {max(targets):.3f}")
 
-results = run_ablation_analysis_with_metrics(tl_encoder, tl_regressor, tokenizer, test_data, target_column=TARGET_COLUMN, output_dir=Path("results/hce"), n_seeds=10, scaler=scaler)
+results = run_ablation_analysis_with_metrics(tl_encoder, tl_regressor, tokenizer, test_data, target_column=TARGET_COLUMN, output_dir=_REPO / "results/hce", n_seeds=10, scaler=scaler)
 
-plot_ablation_metrics(results, Path("results/hce"))
+plot_ablation_metrics(results, _REPO / "results/hce")
 # %% 
 # We move on to regression lens
 # We pick the molecules with the largest, smallest, and median target value to showcase the technique
 # on the training data
 import pickle
-with open("results/hce/ablation/all_results.pkl", "rb") as f:
+with open(_REPO / "results/hce/ablation/all_results.pkl", "rb") as f:
     hce_results = pickle.load(f)
     
-plot_ablation_metrics(hce_results, Path("results/hce"), title = "HCE")
+plot_ablation_metrics(hce_results, _REPO / "results/hce", title = "HCE")
 
 # %%
 median_idx = len(full_data) // 2
@@ -294,7 +295,7 @@ actual_targets = [
 min_max_median_molecules
 
 results = run_regression_lens(tl_encoder, tl_regressor, scaler, min_max_median_molecules, tokenizer)
-plot_individual_molecules_regression_lens(results, results_dir=Path("results/hce/example_regression_lens"), molecule_labels = ["Molecule 7", "Molecule 8", "Molecule 9"], y_label = "Power Conversion Efficiency", title = "HCE", actual_targets=actual_targets, target_labels=["maximum", "median", "minimum"])
+plot_individual_molecules_regression_lens(results, results_dir=_REPO / "results/hce/example_regression_lens", molecule_labels = ["Molecule 7", "Molecule 8", "Molecule 9"], y_label = "Power Conversion Efficiency", title = "HCE", actual_targets=actual_targets, target_labels=["maximum", "median", "minimum"])
 
 # %% 
 # With clustering - build both groups and targets in one pass to ensure alignment
@@ -307,9 +308,9 @@ for cluster, group in full_data.groupby('cluster'):
 
 group_results = compare_molecule_groups_regression_lens(
     tl_encoder, tl_regressor, scaler, molecule_groups, tokenizer,
-    targets=ordered_targets, results_dir="results/hce/regression_lens", device=DEVICE
+    targets=ordered_targets, results_dir=str(_REPO / "results/hce/regression_lens"), device=DEVICE
 )
-plot_group_molecules_regression_lens(group_results, results_dir=Path("results/hce/regression_lens"), mean_y_label = "Mean Power Conversion Efficiency", var_y_label = "Variance Power Conversion Efficiency", title = "HCE")
+plot_group_molecules_regression_lens(group_results, results_dir=_REPO / "results/hce/regression_lens", mean_y_label = "Mean Power Conversion Efficiency", var_y_label = "Variance Power Conversion Efficiency", title = "HCE")
 
 
 # %%

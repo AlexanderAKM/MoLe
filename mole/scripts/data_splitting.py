@@ -6,7 +6,7 @@ from pathlib import Path
 import pandas as pd
 from sklearn.model_selection import train_test_split
 
-_REPO = Path(__file__).resolve().parents[1]
+_REPO = Path(__file__).resolve().parents[2]
 _CLUSTER = _REPO / "clustered_data"
 
 # %%

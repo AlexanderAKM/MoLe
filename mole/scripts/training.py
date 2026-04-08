@@ -2,20 +2,16 @@
 from __future__ import annotations
 
 import argparse
-import sys
 from pathlib import Path
 
 import pandas as pd
 
-_REPO = Path(__file__).resolve().parents[1]
-if str(_REPO) not in sys.path:
-    sys.path.insert(0, str(_REPO))
+from mole.utils.normalizing import normalize_csv
+from mole.utils.chemberta_workflows import train_chemberta_model
 
+_REPO = Path(__file__).resolve().parents[2]
 _CLUSTER = _REPO / "clustered_data"
 _TRAINED = _REPO / "trained_models"
-
-from utils.normalizing import normalize_csv
-from utils.chemberta_workflows import train_chemberta_model
 # %%
 RANDOM_SEED = 19237
 

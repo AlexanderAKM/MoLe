@@ -18,12 +18,9 @@ Run from repo root, e.g.:
 from __future__ import annotations
 
 import argparse
-import sys
 from pathlib import Path
 
 _REPO = Path(__file__).resolve().parents[1]
-if str(_REPO) not in sys.path:
-    sys.path.insert(0, str(_REPO))
 
 import numpy as np
 import pandas as pd
@@ -90,7 +87,7 @@ def run_qm9(
 ) -> None:
     from transformers import RobertaModel, RobertaTokenizerFast
 
-    from utils.chemberta_workflows import DEFAULT_PRETRAINED_NAME
+    from mole.utils.chemberta_workflows import DEFAULT_PRETRAINED_NAME
 
     df = pd.read_csv(csv_path)
     if "smiles" not in df.columns or "dga" not in df.columns:

@@ -1,0 +1,64 @@
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "mole-chem"
+version = "0.1.0"
+description = "MoLe (Molecular Lens) — Mechanistic interpretability for chemistry with ChemBERTa and TransformerLens"
+readme = "README.md"
+license = {text = "MIT"}
+requires-python = ">=3.9"
+authors = [
+    {name = "MoLe Contributors"},
+]
+keywords = ["mechanistic-interpretability", "chemistry", "chemberta", "transformer-lens"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Topic :: Scientific/Engineering :: Chemistry",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+
+dependencies = [
+    # Core deep learning — wide ranges so HPC module systems can satisfy them
+    "torch>=2.1.0",
+    "transformers>=4.30.0,<5.0",
+    "transformer-lens>=1.14.0,<2.0",
+    "safetensors",
+    "regex>=2023.6.3",
+
+    # Chemistry
+    "rdkit>=2023.3.1",
+
+    # Data science & ML
+    "numpy>=1.24.0",
+    "pandas>=2.0.0",
+    "scikit-learn>=1.3.0",
+
+    # Visualization
+    "matplotlib>=3.7.0",
+
+    # Data loading (PyG — needed for QM9)
+    "torch-geometric>=2.3.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.4.0",
+    "black>=23.0.0",
+    "jupyter>=1.0.0",
+]
+
+[project.scripts]
+mole-train = "mole.cli.train:main"
+mole-evaluate = "mole.cli.evaluate:main"
+mole-prepare-data = "mole.cli.prepare_data:main"
+
+[project.urls]
+Repository = "https://github.com/yourusername/Mechanistic-interpretability-for-chemistry"
+
+[tool.setuptools.packages.find]
+include = ["mole*"]

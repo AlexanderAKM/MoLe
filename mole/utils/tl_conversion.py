@@ -22,7 +22,7 @@ from typing import Optional
 
 from .inverse_transform import inverse_transform_target
 from transformers.models.roberta.modeling_roberta import create_position_ids_from_input_ids
-from models.chemberta_regressor import ChembertaRegressorWithFeatures
+from mole.models.chemberta_regressor import ChembertaRegressorWithFeatures
 
 
 def create_faithful_tl_model(hf_model: RobertaModel, device: Optional[str] = None) -> tl.HookedEncoder:

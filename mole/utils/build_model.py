@@ -1,6 +1,6 @@
 from torch import nn
 
-from models.simple_mlp import SimpleMLP
+from mole.models.simple_mlp import SimpleMLP
 
 
 

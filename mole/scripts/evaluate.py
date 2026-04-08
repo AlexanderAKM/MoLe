@@ -4,20 +4,17 @@ from __future__ import annotations
 from pathlib import Path
 import json
 import pickle
-import sys
 
 import numpy as np
 import pandas as pd
 import torch
 from safetensors.torch import load_file
 
-# %%
-REPO = Path(__file__).resolve().parents[1]
-if str(REPO) not in sys.path:
-    sys.path.insert(0, str(REPO))
+from mole.utils.chemberta_workflows import ChembertaRegressor, evaluate_chemberta_model
+from mole.utils.normalizing import normalize_csv
 
-from utils.chemberta_workflows import ChembertaRegressor, evaluate_chemberta_model
-from utils.normalizing import normalize_csv
+# %%
+REPO = Path(__file__).resolve().parents[2]
 
 # %%
 # Change this if you want a different QM9 model folder.

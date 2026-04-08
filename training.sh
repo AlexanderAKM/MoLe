@@ -6,4 +6,6 @@
 #SBATCH --gres=gpu:1
 
 cd $HOME/MoLe
-python scripts/training.py
+mole-train --dataset esol
+mole-train --dataset hce
+mole-train --dataset qm9

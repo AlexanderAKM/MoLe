@@ -3,7 +3,7 @@
 **Mechanistic Interpretability for Chemistry using TransformerLens and ChemBERTa**
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
+[![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/downloads/)
 
 ---
 
@@ -32,18 +32,37 @@ Regression lens extends the concept of "logit lens" from language models to regr
 
 ### Prerequisites
 
-- Python 3.8 or higher
+- Python 3.9 or higher
 - CUDA-capable GPU (recommended for training and analysis), although trained models are provided
 
-### Setup
+### Quick Install (pip)
 
-1. **Clone the repository**
 ```bash
+# Clone and install in one go
 git clone https://github.com/yourusername/Mechanistic-interpretability-for-chemistry.git
 cd Mechanistic-interpretability-for-chemistry
+pip install -e .
 ```
 
-2. **Create a virtual environment** (recommended)
+### HPC / Cluster Install
+
+On HPC systems where PyTorch/CUDA are provided as modules, load them first
+then install the rest:
+
+```bash
+module load python/3.10 cuda/12.1 pytorch/2.2   # adjust to your site
+git clone https://github.com/yourusername/Mechanistic-interpretability-for-chemistry.git
+cd Mechanistic-interpretability-for-chemistry
+pip install --no-deps -e .          # skip deps already satisfied by modules
+pip install -r requirements.txt     # or cherry-pick missing packages
+```
+
+> **Tip:** If `torch-geometric` installation fails on HPC, install the core
+> package first (`pip install -e .`) and then install PyG following
+> [their platform guide](https://pytorch-geometric.readthedocs.io/en/latest/install/installation.html).
+
+### Setup with Virtual Environment
+
 ```bash
 # Using conda
 conda create -n mole python=3.10
@@ -52,16 +71,15 @@ conda activate mole
 # OR using venv
 python -m venv venv
 source venv/bin/activate  # On Windows: venv\Scripts\activate
+
+# Install
+pip install -e .
 ```
 
-3. **Install dependencies**
+### Verify Installation
+
 ```bash
-pip install -r requirements.txt
-```
-
-4. **Verify installation**
-```python
-python -c "import torch; import transformers; import transformer_lens; print('Installation successful!')"
+python -c "from mole.utils.tl_conversion import load_chemberta_models; print('OK')"
 ```
 
 ---
@@ -71,29 +89,26 @@ python -c "import torch; import transformers; import transformer_lens; print('In
 ### 1. Load a Pre-trained Model
 
 ```python
-from utils.tl_conversion import load_chemberta_models
+from mole.utils.tl_conversion import load_chemberta_models
 
-# Load ESOL model
 MODEL_PATH = "trained_models/train_esol/chemberta/chemberta_model_final.bin"
 SCALER_PATH = "trained_models/train_esol/chemberta/normalization_scaler.pkl"
 TOKENIZER_NAME = "DeepChem/ChemBERTa-77M-MLM"
 
 hf_encoder, tl_encoder, tokenizer, hf_regressor, tl_regressor, scaler = load_chemberta_models(
-    MODEL_PATH, TOKENIZER_NAME, device="cuda", SCALER_PATH=SCALER_PATH
+    MODEL_PATH, TOKENIZER_NAME, device="cuda", scaler_path=SCALER_PATH
 )
 ```
 
 ### 2. Run Regression Lens Analysis
 
 ```python
-from utils.tl_regression import run_regression_lens, plot_individual_molecules_regression_lens
+from mole.utils.tl_regression import run_regression_lens, plot_individual_molecules_regression_lens
 from pathlib import Path
 
-# Analyze molecules
 molecules = ["CCO", "c1ccccc1", "CC(=O)O"]  # Ethanol, Benzene, Acetic acid
 results = run_regression_lens(tl_encoder, tl_regressor, scaler, molecules, tokenizer)
 
-# Plot results
 plot_individual_molecules_regression_lens(
     results, 
     results_dir=Path("results/example"),
@@ -104,13 +119,11 @@ plot_individual_molecules_regression_lens(
 ### 3. Run Ablation Studies
 
 ```python
-from utils.tl_ablation import run_ablation_analysis_with_metrics
+from mole.utils.tl_ablation import run_ablation_analysis_with_metrics
 import pandas as pd
 
-# Load test data
 test_data = pd.read_csv("clustered_data/esol/test_esol.csv")
 
-# Run ablation analysis
 results = run_ablation_analysis_with_metrics(
     tl_encoder, 
     tl_regressor, 
@@ -125,51 +138,91 @@ results = run_ablation_analysis_with_metrics(
 
 ---
 
+## CLI Commands
+
+After installation, three commands are available:
+
+### `mole-train` — Train a model
+
+```bash
+# Train on a bundled dataset
+mole-train --dataset esol
+mole-train --dataset hce --epochs 50 --lr 1e-4
+
+# Train on custom CSVs
+mole-train --train-csv my_train.csv --test-csv my_test.csv \
+           --val-csv my_val.csv --target-column property
+```
+
+### `mole-evaluate` — Evaluate a trained model
+
+```bash
+# Evaluate a bundled model
+mole-evaluate --dataset esol
+
+# Evaluate a custom model
+mole-evaluate --model-dir trained_models/custom/chemberta \
+              --test-csv data/test.csv --target-column solubility
+```
+
+### `mole-prepare-data` — Download and preprocess datasets
+
+```bash
+# Prepare all bundled datasets (ESOL + HCE)
+mole-prepare-data
+
+# Prepare a specific dataset
+mole-prepare-data --dataset esol
+```
+
+---
+
 ## Repository Structure
 
 ```
 .
-├── clustered_data/          # Processed datasets (ESOL, QM9, HCE)
-│   ├── esol/               # Solubility prediction data
-│   ├── qm9/                # Quantum properties data
-│   └── hce/                # Organic solar cell efficiency data
-├── models/                  # Model architectures
-│   ├── chemberta_regressor.py
-│   ├── encoder_mlp.py
-│   └── simple_mlp.py
-├── scripts/                 # Data processing and training scripts
-│   ├── load_data.py        # Data downloading and clustering
-│   ├── data_splitting.py   # Train/test splits
-│   └── training.py         # Model training pipeline
-├── utils/                   # Core interpretability utilities
-│   ├── tl_conversion.py    # HF to TransformerLens conversion
-│   ├── tl_regression.py    # Regression lens analysis
-│   ├── tl_ablation.py      # Ablation studies
-│   ├── tl_validation.py    # Model validation utilities
-│   └── plotting.py         # Visualization functions
-├── trained_models/          # Pre-trained model checkpoints
-├── results/                 # Analysis results and plots
-└── TL_chem.py              # Main analysis script (development)
+├── mole/                            # Installable Python package
+│   ├── models/                      # Model architectures
+│   │   ├── chemberta_regressor.py
+│   │   ├── encoder_mlp.py
+│   │   └── simple_mlp.py
+│   ├── utils/                       # Core utilities & interpretability
+│   │   ├── tl_conversion.py         # HF → TransformerLens conversion
+│   │   ├── tl_regression.py         # Regression lens analysis
+│   │   ├── tl_ablation.py           # Ablation studies
+│   │   ├── tl_validation.py         # Model validation
+│   │   ├── chemberta_workflows.py   # Training & evaluation orchestration
+│   │   ├── clustering.py            # Molecular clustering
+│   │   └── plotting.py              # Visualization
+│   ├── scripts/                     # Core pipeline scripts
+│   │   ├── load_data.py             # Data downloading and clustering
+│   │   ├── data_splitting.py        # Train/test splits
+│   │   ├── training.py              # Full training pipeline
+│   │   └── evaluate.py              # Model evaluation
+│   ├── cli/                         # Command-line entry points
+│   │   ├── train.py
+│   │   ├── evaluate.py
+│   │   └── prepare_data.py
+│   └── TL_chem.py                   # Main interpretability analysis script
+├── scripts/                         # Non-essential utility scripts
+│   ├── token_length_profile.py      # Tokenization stats
+│   ├── dataset_qc.py               # Data quality checks
+│   └── extract_regression_lens.py   # Regression lens extraction
+├── clustered_data/                  # Processed datasets (ESOL, QM9, HCE)
+├── trained_models/                  # Pre-trained model checkpoints
+├── results/                         # Analysis results and plots
+├── pyproject.toml                   # Package configuration
+└── requirements.txt                 # Legacy dependency list
 ```
 
 ---
 
 ## Usage Examples
 
-### Training a New Model
-
-```bash
-python scripts/training.py \
-    --data_path clustered_data/esol/train_esol.csv \
-    --output_dir trained_models/my_model \
-    --target_column solubility \
-    --epochs 10
-```
-
 ### Comparing Molecule Groups
 
 ```python
-from utils.tl_regression import compare_molecule_groups_regression_lens
+from mole.utils.tl_regression import compare_molecule_groups_regression_lens
 
 molecule_groups = {
     "Alcohols": ["CCO", "CC(C)O", "CCCO"],
@@ -185,9 +238,8 @@ group_results = compare_molecule_groups_regression_lens(
 ### Validation of Model Conversion
 
 ```python
-from utils.tl_validation import validate_conversion, test_prediction_equivalence
+from mole.utils.tl_validation import validate_conversion, test_prediction_equivalence
 
-# Verify TL model matches HF model
 test_smiles = "CCO"
 inputs = tokenizer(test_smiles, return_tensors="pt").to(device)
 
@@ -197,7 +249,6 @@ conversion_results = validate_conversion(
     inputs["attention_mask"]
 )
 print(f"Max difference: {conversion_results['final_output']:.6f}")
-
 # Should be < 1e-5 for faithful conversion
 ```
 
@@ -207,20 +258,19 @@ To reproduce all results from the paper:
 
 1. **Data Preparation**
 ```bash
-python scripts/load_data.py
-python scripts/data_splitting.py
+mole-prepare-data --dataset all
 ```
 
 2. **Model Training**
 ```bash
-python scripts/training.py --dataset esol
-python scripts/training.py --dataset qm9
-python scripts/training.py --dataset hce
+mole-train --dataset esol
+mole-train --dataset hce
+mole-train --dataset qm9
 ```
 
 3. **Run Analysis**
 ```bash
-python TL_chem.py
+python mole/TL_chem.py
 ```
 
 ---
@@ -292,4 +342,3 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - **TransformerLens**: Interpretability framework by [Neel Nanda](https://github.com/neelnanda-io/TransformerLens)
 - **MoleculeNet**: Dataset source for ESOL and QM9
 - **Tartarus**: Dataset source for HCE
-

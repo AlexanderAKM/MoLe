@@ -3,30 +3,16 @@ from __future__ import annotations
 
 from pathlib import Path
 
-import importlib.util
 import random
-import sys
 import urllib.request
 
 import numpy as np
 import pandas as pd
 import rdkit.Chem as rdc
-import torch_geometric.datasets as tcgd
 
-# Repo root (so `python scripts/load_data.py` works from any cwd)
-_REPO = Path(__file__).resolve().parents[1]
-if str(_REPO) not in sys.path:
-    sys.path.insert(0, str(_REPO))
+from mole.utils.clustering import clustering, clustering_hce
 
-# Structure-based clustering from scripts/preprocessing.py (random reference FP subsample; not label-quantile refs)
-_pp_spec = importlib.util.spec_from_file_location(
-    "dataset_preprocessing", _REPO / "scripts" / "preprocessing.py"
-)
-assert _pp_spec and _pp_spec.loader
-_preprocessing = importlib.util.module_from_spec(_pp_spec)
-_pp_spec.loader.exec_module(_preprocessing)
-clustering = _preprocessing.clustering
-clustering_hce = _preprocessing.clustering_hce
+_REPO = Path(__file__).resolve().parents[2]
 
 random.seed(0)
 np.random.seed(0)
@@ -45,19 +31,19 @@ def download_dataset(url, output_path: Path | str):
 # %%
 # Load QM9
 # database = tcgd.QM9(root=str(_REPO / "qm9_data"))
-
+#
 # # Extract SMILES and Gibbs free energy of atomization from QM9
 # smiles_list = [di.smiles for di in database]
 # data_qm9 = pd.DataFrame(smiles_list, columns=['smiles'])
 # data_qm9['dga'] = [di.y[:,15].item() for di in database] # Place 15 is Gibbs free energy
 # print(f"Dataset size: {len(data_qm9.index)}")
-
+#
 # # Filter QM9 with roundtrip
 # data_qm9['mol'] = [rdc.MolFromSmiles(si) for si in list(data_qm9['smiles'].values)]
 # data_qm9 = data_qm9.dropna(ignore_index=True)
 # data_qm9 = data_qm9.drop(columns=['mol'])
 # print(f"Dataset size after filtering: {len(data_qm9.index)}")
-
+#
 # # Apply clustering to QM9
 # data_qm9 = clustering(
 #     data_qm9,
@@ -84,7 +70,7 @@ data_esol = clustering(
     dataset_name="esol",
 )
 # %%
-# HCE — AtomPair fingerprint clustering (see scripts/preprocessing.clustering_hce)
+# HCE — AtomPair fingerprint clustering (see mole.utils.clustering.clustering_hce)
 download_dataset(HCE_URL, _REPO / "data" / "hce.csv")
 
 database = pd.read_csv(_REPO / "data" / "hce.csv")

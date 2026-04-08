@@ -30,7 +30,7 @@ from transformers import (
 )
 from transformers.modeling_outputs import SequenceClassifierOutput
 
-from models.simple_mlp import SimpleMLP
+from mole.models.simple_mlp import SimpleMLP
 
 from .normalizing import inverse_transform
 from .plotting import plot_predictions_vs_targets

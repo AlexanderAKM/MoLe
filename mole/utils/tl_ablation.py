@@ -6,7 +6,7 @@ performance degradation when they are removed or zeroed out.
 
 Example usage::
 
-    from utils.tl_ablation import run_ablation_analysis_with_metrics
+    from mole.utils.tl_ablation import run_ablation_analysis_with_metrics
 
     # Assuming you have true target values for your test molecules
     results = run_ablation_analysis_with_metrics(

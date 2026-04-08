@@ -4,8 +4,8 @@ from torch import nn
 from transformers import RobertaModel
 from transformers.modeling_outputs import SequenceClassifierOutput
 
-from utils.build_model import build_model
-from models.encoder_mlp import EncoderMLP
+from mole.utils.build_model import build_model
+from mole.models.encoder_mlp import EncoderMLP
 
 
 class ChembertaRegressorWithFeatures(nn.Module):
