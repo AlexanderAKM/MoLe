@@ -18,7 +18,9 @@ _esol_drop = [c for c in ("quantile",) if c in esol.columns]
 if _esol_drop:
     esol = esol.drop(columns=_esol_drop)
 train_esol, test_esol = train_test_split(esol, test_size=0.2, random_state=RANDOM_SEED, stratify=esol['cluster'])
+train_esol, validation_esol = train_test_split(train_esol, test_size=0.25, random_state=RANDOM_SEED, stratify=train_esol['cluster'])
 train_esol.to_csv(_CLUSTER / "esol" / "train_esol.csv", index=False)
+validation_esol.to_csv(_CLUSTER / "esol" / "validation_esol.csv", index=False)
 test_esol.to_csv(_CLUSTER / "esol" / "test_esol.csv", index=False)
 # %%
 # FOR QM9
@@ -35,6 +37,8 @@ test_qm9.to_csv(_CLUSTER / "qm9" / "test_qm9.csv", index=False)
 hce = pd.read_csv(_CLUSTER / "hce" / "hce.csv")
 hce
 train_hce, test_hce = train_test_split(hce, test_size=0.2, random_state=RANDOM_SEED, stratify=hce['cluster'])
+train_hce, validation_hce = train_test_split(train_hce, test_size=0.25, random_state=RANDOM_SEED, stratify=train_hce['cluster'])
 train_hce.to_csv(_CLUSTER / "hce" / "train_hce.csv", index=False)
+validation_hce.to_csv(_CLUSTER / "hce" / "validation_hce.csv", index=False)
 test_hce.to_csv(_CLUSTER / "hce" / "test_hce.csv", index=False)
 # %%

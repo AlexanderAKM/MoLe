@@ -274,8 +274,9 @@ def evaluate_chemberta_model(
 
 
 def train_chemberta_model(
-    args, df_train, df_test, scaler, device=None, evaluate_after_training=True, 
-    dataset_name=None, freeze_encoder=False, model_name="chemberta"
+    args, df_train, df_test, scaler, df_val=None, device=None,
+    evaluate_after_training=True, dataset_name=None, freeze_encoder=False,
+    model_name="chemberta", early_stopping_patience=5,
 ):
     """
     Train a ChemBERTa model for regression on SMILES data with one target value.
@@ -285,11 +286,15 @@ def train_chemberta_model(
         df_train: Training dataframe containing SMILES and target
         df_test: Test dataframe containing SMILES and target
         scaler: scaler used for normalization
+        df_val: Validation dataframe (optional). When provided, enables per-epoch
+                evaluation on the val set and early stopping.
         device: PyTorch device (optional)
         evaluate_after_training: Whether to evaluate on test set after training (default: True)
         dataset_name: Name of the dataset (used for output directory)
         freeze_encoder: If True, freeze the encoder and only train the regression head
         model_name: Name for the model subdirectory (e.g., "chemberta" or "chemberta_frozen")
+        early_stopping_patience: Number of eval epochs with no val-loss improvement
+                                 before stopping (default: 5). Only used when df_val is provided.
 
     Returns:
         dict: Results including model, metrics, predictions, etc.
@@ -312,6 +317,12 @@ def train_chemberta_model(
     train_dataset = ChembertaDataset(texts_train, targets_train, tokenizer)
     test_dataset = ChembertaDataset(texts_test, targets_test, tokenizer)
 
+    val_dataset = None
+    if df_val is not None:
+        texts_val = df_val[smiles_col].tolist()
+        targets_val = df_val[target_col].values.astype(np.float32)
+        val_dataset = ChembertaDataset(texts_val, targets_val, tokenizer)
+
     model = ChembertaRegressor(
         pretrained=DEFAULT_PRETRAINED_NAME,
         dropout=args.dropout,
@@ -331,18 +342,20 @@ def train_chemberta_model(
     save_steps = max(1, steps_per_epoch * save_every_n_epochs)
     save_total_limit = getattr(args, "save_total_limit", None)
 
+    use_early_stopping = val_dataset is not None
+
     ta_kwargs = dict(
         output_dir=output_dir,
         num_train_epochs=args.epochs,
         per_device_train_batch_size=args.batch_size,
         per_device_eval_batch_size=args.batch_size,
-        save_strategy="steps",
-        save_steps=save_steps,
+        save_strategy="epoch" if use_early_stopping else "steps",
+        save_steps=save_steps if not use_early_stopping else None,
         save_total_limit=save_total_limit,
         learning_rate=args.lr,
         weight_decay=args.l2_lambda,
-        load_best_model_at_end=False,
-        metric_for_best_model="loss",
+        load_best_model_at_end=use_early_stopping,
+        metric_for_best_model="eval_loss",
         greater_is_better=False,
         logging_strategy="epoch",
         logging_first_step=True,
@@ -351,10 +364,11 @@ def train_chemberta_model(
     )
     # Transformers API differs across versions (eval_strategy vs evaluation_strategy).
     ta_params = inspect.signature(TrainingArguments.__init__).parameters
+    eval_strat = "epoch" if use_early_stopping else "no"
     if "evaluation_strategy" in ta_params:
-        ta_kwargs["evaluation_strategy"] = "no"
+        ta_kwargs["evaluation_strategy"] = eval_strat
     elif "eval_strategy" in ta_params:
-        ta_kwargs["eval_strategy"] = "no"
+        ta_kwargs["eval_strategy"] = eval_strat
 
     training_args = TrainingArguments(**ta_kwargs)
 
@@ -363,12 +377,18 @@ def train_chemberta_model(
         target_column=target_col,
     )
 
+    callbacks = []
+    if use_early_stopping:
+        callbacks.append(EarlyStoppingCallback(early_stopping_patience=early_stopping_patience))
+
     trainer = L1Trainer(
         model=model,
         args=training_args,
         train_dataset=train_dataset,
+        eval_dataset=val_dataset,
         compute_metrics=compute_metrics,
         l1_lambda=args.l1_lambda,
+        callbacks=callbacks,
     )
 
     print("\nTraining ChemBERTa model...")
