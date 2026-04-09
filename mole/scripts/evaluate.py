@@ -18,7 +18,7 @@ REPO = Path(__file__).resolve().parents[2]
 
 # %%
 # Change this if you want a different QM9 model folder.
-QM9_MODEL_DIR = REPO / "trained_models" / "train_qm9_05" / "chemberta"
+QM9_MODEL_DIR = REPO / "trained_models" / "train_qm9" / "chemberta"
 USE_LATEST_HCE_CHECKPOINT = False
 
 CONFIGS = {
@@ -33,7 +33,7 @@ CONFIGS = {
         "model_dir": REPO / "trained_models" / "train_hce" / "chemberta",
     },
     "qm9": {
-        "test_csv": REPO / "clustered_data" / "qm9" / "test_qm9.csv",
+        "test_csv": REPO / "clustered_data" / "qm9" / "train_qm9.csv",
         "target_col": "dga",
         "model_dir": QM9_MODEL_DIR,
     },
@@ -123,11 +123,11 @@ def evaluate_dataset(name: str, batch_size: int = 32):
     return results
 
 # %%
-# Run all three
-esol_eval = evaluate_dataset("esol")
+# # Run all three
+# esol_eval = evaluate_dataset("esol")
 
-# %%
-hce_eval = evaluate_dataset("hce")
+# # %%
+# hce_eval = evaluate_dataset("hce")
 
 # %%
 qm9_eval = evaluate_dataset("qm9")
