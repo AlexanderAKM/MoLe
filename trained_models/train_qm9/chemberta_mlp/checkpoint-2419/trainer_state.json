@@ -1,0 +1,74 @@
+{
+  "best_metric": 0.01737886480987072,
+  "best_model_checkpoint": "/home1/s5193400/MoLe/trained_models/train_qm9/chemberta_mlp/checkpoint-2419",
+  "epoch": 1.0,
+  "eval_steps": 500,
+  "global_step": 2419,
+  "is_hyper_param_search": false,
+  "is_local_process_zero": true,
+  "is_world_process_zero": true,
+  "log_history": [
+    {
+      "epoch": 0.00041339396444811904,
+      "grad_norm": 1.3733751773834229,
+      "learning_rate": 4.999979330301778e-05,
+      "loss": 0.8832,
+      "regularized_loss": 0.8832272291183472,
+      "step": 1
+    },
+    {
+      "epoch": 1.0,
+      "grad_norm": 1.5674234628677368,
+      "learning_rate": 4.9500000000000004e-05,
+      "loss": 0.0915,
+      "regularized_loss": 0.04951867088675499,
+      "step": 2419
+    },
+    {
+      "epoch": 1.0,
+      "eval_loss": 0.01737886480987072,
+      "eval_mae": 0.9485270624335733,
+      "eval_mse": 1.572228704659386,
+      "eval_normalized_mae": 0.0997246578335762,
+      "eval_normalized_mse": 0.01737886294722557,
+      "eval_normalized_r2": 0.982387125492096,
+      "eval_normalized_rmse": 0.13182891544431963,
+      "eval_r2": 0.9823871207538721,
+      "eval_rmse": 1.2538854431962219,
+      "eval_runtime": 12.7995,
+      "eval_samples_per_second": 2015.938,
+      "eval_steps_per_second": 63.049,
+      "step": 2419
+    }
+  ],
+  "logging_steps": 500,
+  "max_steps": 241900,
+  "num_input_tokens_seen": 0,
+  "num_train_epochs": 100,
+  "save_steps": 500,
+  "stateful_callbacks": {
+    "EarlyStoppingCallback": {
+      "args": {
+        "early_stopping_patience": 10,
+        "early_stopping_threshold": 0.0
+      },
+      "attributes": {
+        "early_stopping_patience_counter": 0
+      }
+    },
+    "TrainerControl": {
+      "args": {
+        "should_epoch_stop": false,
+        "should_evaluate": false,
+        "should_log": false,
+        "should_save": true,
+        "should_training_stop": false
+      },
+      "attributes": {}
+    }
+  },
+  "total_flos": 0.0,
+  "train_batch_size": 32,
+  "trial_name": null,
+  "trial_params": null
+}
