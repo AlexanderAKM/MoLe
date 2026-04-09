@@ -28,7 +28,7 @@ _SHARED_HPARAMS = {
     'l1_lambda': 0.0,
     'l2_lambda': 0.01,
     'dropout': 0.3,
-    'hidden_channels': 128,
+    'hidden_channels': 256,
     'num_mlp_layers': 1,
     'early_stopping_patience': 10,
     'random_seed': RANDOM_SEED,

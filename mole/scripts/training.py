@@ -43,7 +43,7 @@ _SHARED_HPARAMS_MULTIPLE_LAYERS = {
     'l1_lambda': 0.0,
     'l2_lambda': 0.01,
     'dropout': 0.3,
-    'hidden_channels': 128,
+    'hidden_channels': 256,
     'num_mlp_layers': 3,
     'early_stopping_patience': 10,
     'random_seed': RANDOM_SEED,
@@ -102,6 +102,19 @@ esol_results
 # )
 # hce_results
 
+# =============================================================================
+# HCE with MLP instead of linear layer
+# =============================================================================
+hce_parser = argparse.Namespace(**{**_SHARED_HPARAMS_MULTIPLE_LAYERS, 'target_column': 'pce_1'})
+norm_train_hce, norm_val_hce, norm_test_hce, hce_scaler = _load_and_normalize("hce", hce_parser.target_column)
+
+# %%
+hce_results = train_chemberta_model(
+    hce_parser, norm_train_hce, norm_test_hce, hce_scaler,
+    df_val=norm_val_hce, dataset_name="train_hce", model_name="chemberta_mlp",
+)
+hce_results
+
 # # %%
 # # =============================================================================
 # # QM9
@@ -115,3 +128,16 @@ esol_results
 #     df_val=norm_val_qm9, dataset_name="train_qm9", model_name="chemberta",
 # )
 # qm9_results
+
+# # =============================================================================
+# QM9
+# =============================================================================
+qm9_parser = argparse.Namespace(**{**_SHARED_HPARAMS_MULTIPLE_LAYERS, 'target_column': 'dga'})
+norm_train_qm9, norm_val_qm9, norm_test_qm9, qm9_scaler = _load_and_normalize("qm9", qm9_parser.target_column)
+
+# %%
+qm9_results = train_chemberta_model(
+    qm9_parser, norm_train_qm9, norm_test_qm9, qm9_scaler,
+    df_val=norm_val_qm9, dataset_name="train_qm9", model_name="chemberta_mlp",
+)
+qm9_results
