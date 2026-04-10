@@ -929,3 +929,1106 @@ Using training set normalization: mean=-70.8965, std=9.4840
 Using training set normalization: mean=-70.8965, std=9.4840
 Using training set normalization: mean=-70.8965, std=9.4840
 Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+  Ablating 10.0% of MLP neurons...
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+  Ablating 20.0% of MLP neurons...
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+  Ablating 30.0% of MLP neurons...
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+  Ablating 40.0% of MLP neurons...
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+  Ablating 50.0% of MLP neurons...
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+  Ablating 60.0% of MLP neurons...
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+  Ablating 70.0% of MLP neurons...
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+  Ablating 80.0% of MLP neurons...
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+  Ablating 90.0% of MLP neurons...
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+  Ablating 100.0% of MLP neurons...
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+
+Testing attention ablation...
+  Ablating 0.0% of attention heads...
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+  Ablating 10.0% of attention heads...
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+  Ablating 20.0% of attention heads...
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+  Ablating 30.0% of attention heads...
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+  Ablating 40.0% of attention heads...
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+  Ablating 50.0% of attention heads...
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+  Ablating 60.0% of attention heads...
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+  Ablating 70.0% of attention heads...
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+  Ablating 80.0% of attention heads...
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+  Ablating 90.0% of attention heads...
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+  Ablating 100.0% of attention heads...
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+
+Testing combined ablation...
+  Ablating 0.0% of attention heads and mlp neurons...
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+  Ablating 10.0% of attention heads and mlp neurons...
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+  Ablating 20.0% of attention heads and mlp neurons...
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+  Ablating 30.0% of attention heads and mlp neurons...
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+  Ablating 40.0% of attention heads and mlp neurons...
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+  Ablating 50.0% of attention heads and mlp neurons...
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+  Ablating 60.0% of attention heads and mlp neurons...
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+  Ablating 70.0% of attention heads and mlp neurons...
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+  Ablating 80.0% of attention heads and mlp neurons...
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+  Ablating 90.0% of attention heads and mlp neurons...
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+  Ablating 100.0% of attention heads and mlp neurons...
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+/home1/s5193400/MoLe/mole/utils/tl_regression.py:330: UserWarning: No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
+  plt.legend(loc='best', fontsize=14)
+/home1/s5193400/MoLe/mole/utils/tl_regression.py:351: UserWarning: No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
+  plt.legend(loc='best', fontsize=14)
+/home1/s5193400/MoLe/.venv/lib/python3.11/site-packages/huggingface_hub/file_download.py:949: FutureWarning: `resume_download` is deprecated and will be removed in version 1.0.0. Downloads always resume when possible. If you want to force a new download, use `force_download=True`.
+  warnings.warn(
+/home1/s5193400/MoLe/.venv/lib/python3.11/site-packages/sklearn/base.py:463: InconsistentVersionWarning: Trying to unpickle estimator StandardScaler from version 1.6.1 when using version 1.8.0. This might lead to breaking code or invalid results. Use at your own risk. For more info please refer to:
+https://scikit-learn.org/stable/model_persistence.html#security-maintainability-limitations
+  warnings.warn(
+Ablation analysis complete!
+10
+Ablation metrics plots saved to /home1/s5193400/MoLe/results/qm9/ablation:
+  • mae_ablation_plot.pdf
+  • r2_ablation_plot.pdf
+  • rmse_ablation_plot.pdf
+  • mae_comparison_bar_plot.pdf
+10
+Ablation metrics plots saved to /home1/s5193400/MoLe/results/qm9_1/ablation:
+  • mae_ablation_plot.pdf
+  • r2_ablation_plot.pdf
+  • rmse_ablation_plot.pdf
+  • mae_comparison_bar_plot.pdf
+Processing Cluster 1: 30475 molecules...
+Processing Cluster 2: 30055 molecules...
+Processing Cluster 3: 32355 molecules...
+Processing Cluster 4: 36127 molecules...
+Targets (first 20): [-16.151918411254883, -11.246005058288574, -8.733848571777344, -15.86263370513916, -12.520095825195312, -14.763946533203123, -27.18616485595703, -19.51924514770508, -27.37781524658203, -24.159278869628903, -26.303726196289062, -22.12468147277832, -38.28070831298828, -30.760297775268555, -30.42284774780273, -32.64207458496094, -25.055376052856445, -37.75392532348633, -33.51817321777344, -28.990278244018555]
+max target and min: (-104.81642150878906, -8.733848571777344)
+max and min are (-71.49012190037631, -71.49012190037631)
+Layer Embedding predictions (first 20): [-71.4901219 -71.4901219 -71.4901219 -71.4901219 -71.4901219 -71.4901219
+ -71.4901219 -71.4901219 -71.4901219 -71.4901219 -71.4901219 -71.4901219
+ -71.4901219 -71.4901219 -71.4901219 -71.4901219 -71.4901219 -71.4901219
+ -71.4901219 -71.4901219]
+max and min are (-66.39875131095513, -73.62596699736241)
+Layer 1 predictions (first 20): [-70.11584714 -68.47366866 -68.64200177 -70.05380436 -68.54306436
+ -70.05673786 -71.11668531 -70.58568013 -72.82510316 -69.4301558
+ -69.35661484 -68.5906614  -71.2418694  -70.86103962 -69.82789044
+ -70.54012788 -70.04543102 -71.07561581 -70.66644202 -70.39612777]
+max and min are (-60.232351468443866, -77.30183984554665)
+Layer 2 predictions (first 20): [-62.77667163 -62.19893631 -62.35827935 -63.83619239 -63.18961621
+ -61.61113095 -64.08873629 -63.47707291 -67.96153144 -62.96885625
+ -61.8248395  -61.09879672 -64.67616291 -64.80857333 -62.70233615
+ -63.28166784 -62.84364478 -62.96383987 -62.78012045 -62.07964286]
+max and min are (-37.659678421754386, -99.78062860046136)
+Layer 3 predictions (first 20): [-37.89709067 -37.93345004 -38.50830803 -38.29810653 -37.99912077
+ -38.04441397 -37.81255964 -37.95692083 -39.31088696 -37.87384147
+ -37.75970288 -37.81172528 -38.67687489 -38.02915795 -37.78555014
+ -37.81759071 -37.93538107 -38.30289792 -37.81802033 -37.78557954]
+Cluster 1 R² scores by layer: {'Embedding': -0.8206237106680685, '1': -0.4820105626923863, '2': 0.09005391263088058, '3': 0.9660972281600931}
+Cluster 2 R² scores by layer: {'Embedding': -0.30316242781617553, '1': -0.3969734781333176, '2': 0.15251226445722388, '3': 0.9683526941467028}
+Cluster 3 R² scores by layer: {'Embedding': -0.002002429963254615, '1': 0.00892168588950304, '2': 0.3827499069866629, '3': 0.9614815829254638}
+Cluster 4 R² scores by layer: {'Embedding': -0.02266421451159495, '1': 0.006339392187273196, '2': 0.35939102675256207, '3': 0.9763627970849137}
+Variance ratios by layer: {'Embedding': 2.011412233648148e-29, '1': 0.020004930518617285, '2': 0.08642790018515453, '3': 1.1156784886120068}
+Global R² scores by layer: {'Embedding': -0.0039052606093668008, '1': 0.062301271110580037, '2': 0.4154018480112527, '3': 0.9762712477268535}
+cuda
+Loaded hyperparameters from /home1/s5193400/MoLe/trained_models/train_hce/chemberta/hyperparameters.json
+Hyperparameters: {'dropout': 0.3, 'hidden_channels': 128, 'num_mlp_layers': 1, 'lr': 5e-05, 'l2_lambda': 0.01, 'l1_lambda': 0.0, 'batch_size': 32, 'epochs': 100}
+mlp
+{'hidden_channels': 128, 'num_numerical_features': 384, 'num_mlp_layers': 1, 'dropout': 0.3}
+mlp architecture:
+{'hidden_channels': 128, 'num_numerical_features': 384, 'num_mlp_layers': 1, 'dropout': 0.3}
+Loaded scaler from /home1/s5193400/MoLe/trained_models/train_hce/chemberta/normalization_scaler.pkl
+Moving model to device:  cuda
+Moving model to device:  cuda
+RobertaModel(
+  (embeddings): RobertaEmbeddings(
+    (word_embeddings): Embedding(600, 384, padding_idx=1)
+    (position_embeddings): Embedding(515, 384, padding_idx=1)
+    (token_type_embeddings): Embedding(1, 384)
+    (LayerNorm): LayerNorm((384,), eps=1e-12, elementwise_affine=True)
+    (dropout): Dropout(p=0.144, inplace=False)
+  )
+  (encoder): RobertaEncoder(
+    (layer): ModuleList(
+      (0-2): 3 x RobertaLayer(
+        (attention): RobertaAttention(
+          (self): RobertaSelfAttention(
+            (query): Linear(in_features=384, out_features=384, bias=True)
+            (key): Linear(in_features=384, out_features=384, bias=True)
+            (value): Linear(in_features=384, out_features=384, bias=True)
+            (dropout): Dropout(p=0.109, inplace=False)
+          )
+          (output): RobertaSelfOutput(
+            (dense): Linear(in_features=384, out_features=384, bias=True)
+            (LayerNorm): LayerNorm((384,), eps=1e-12, elementwise_affine=True)
+            (dropout): Dropout(p=0.144, inplace=False)
+          )
+        )
+        (intermediate): RobertaIntermediate(
+          (dense): Linear(in_features=384, out_features=464, bias=True)
+          (intermediate_act_fn): GELUActivation()
+        )
+        (output): RobertaOutput(
+          (dense): Linear(in_features=464, out_features=384, bias=True)
+          (LayerNorm): LayerNorm((384,), eps=1e-12, elementwise_affine=True)
+          (dropout): Dropout(p=0.144, inplace=False)
+        )
+      )
+    )
+  )
+) HookedEncoder(
+  (embed): BertEmbed(
+    (embed): Embed()
+    (pos_embed): PosEmbed()
+    (token_type_embed): TokenTypeEmbed()
+    (ln): LayerNorm(
+      (hook_scale): HookPoint()
+      (hook_normalized): HookPoint()
+    )
+    (hook_embed): HookPoint()
+    (hook_pos_embed): HookPoint()
+    (hook_token_type_embed): HookPoint()
+  )
+  (blocks): ModuleList(
+    (0-2): 3 x BertBlock(
+      (attn): Attention(
+        (hook_k): HookPoint()
+        (hook_q): HookPoint()
+        (hook_v): HookPoint()
+        (hook_z): HookPoint()
+        (hook_attn_scores): HookPoint()
+        (hook_pattern): HookPoint()
+        (hook_result): HookPoint()
+      )
+      (ln1): LayerNorm(
+        (hook_scale): HookPoint()
+        (hook_normalized): HookPoint()
+      )
+      (mlp): MLP(
+        (hook_pre): HookPoint()
+        (hook_post): HookPoint()
+      )
+      (ln2): LayerNorm(
+        (hook_scale): HookPoint()
+        (hook_normalized): HookPoint()
+      )
+      (hook_q_input): HookPoint()
+      (hook_k_input): HookPoint()
+      (hook_v_input): HookPoint()
+      (hook_attn_out): HookPoint()
+      (hook_mlp_in): HookPoint()
+      (hook_mlp_out): HookPoint()
+      (hook_resid_pre): HookPoint()
+      (hook_resid_mid): HookPoint()
+      (hook_resid_post): HookPoint()
+      (hook_normalized_resid_post): HookPoint()
+    )
+  )
+  (mlm_head): BertMLMHead(
+    (act_fn): GELU(approximate='none')
+    (ln): LayerNorm(
+      (hook_scale): HookPoint()
+      (hook_normalized): HookPoint()
+    )
+  )
+  (unembed): Unembed()
+  (hook_full_embed): HookPoint()
+) RobertaTokenizerFast(name_or_path='DeepChem/ChemBERTa-77M-MLM', vocab_size=591, model_max_length=512, is_fast=True, padding_side='right', truncation_side='right', special_tokens={'bos_token': '<s>', 'eos_token': '</s>', 'unk_token': '[UNK]', 'sep_token': '[SEP]', 'pad_token': '[PAD]', 'cls_token': '[CLS]', 'mask_token': '[MASK]'}, clean_up_tokenization_spaces=True),  added_tokens_decoder={
+	0: AddedToken("[PAD]", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),
+	11: AddedToken("[UNK]", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),
+	12: AddedToken("[CLS]", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),
+	13: AddedToken("[SEP]", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),
+	14: AddedToken("[MASK]", rstrip=False, lstrip=True, single_word=False, normalized=False, special=True),
+	591: AddedToken("<s>", rstrip=False, lstrip=False, single_word=False, normalized=True, special=True),
+	592: AddedToken("</s>", rstrip=False, lstrip=False, single_word=False, normalized=True, special=True),
+} ChembertaRegressorWithFeatures(
+  (roberta): RobertaModel(
+    (embeddings): RobertaEmbeddings(
+      (word_embeddings): Embedding(600, 384, padding_idx=1)
+      (position_embeddings): Embedding(515, 384, padding_idx=1)
+      (token_type_embeddings): Embedding(1, 384)
+      (LayerNorm): LayerNorm((384,), eps=1e-12, elementwise_affine=True)
+      (dropout): Dropout(p=0.144, inplace=False)
+    )
+    (encoder): RobertaEncoder(
+      (layer): ModuleList(
+        (0-2): 3 x RobertaLayer(
+          (attention): RobertaAttention(
+            (self): RobertaSelfAttention(
+              (query): Linear(in_features=384, out_features=384, bias=True)
+              (key): Linear(in_features=384, out_features=384, bias=True)
+              (value): Linear(in_features=384, out_features=384, bias=True)
+              (dropout): Dropout(p=0.109, inplace=False)
+            )
+            (output): RobertaSelfOutput(
+              (dense): Linear(in_features=384, out_features=384, bias=True)
+              (LayerNorm): LayerNorm((384,), eps=1e-12, elementwise_affine=True)
+              (dropout): Dropout(p=0.144, inplace=False)
+            )
+          )
+          (intermediate): RobertaIntermediate(
+            (dense): Linear(in_features=384, out_features=464, bias=True)
+            (intermediate_act_fn): GELUActivation()
+          )
+          (output): RobertaOutput(
+            (dense): Linear(in_features=464, out_features=384, bias=True)
+            (LayerNorm): LayerNorm((384,), eps=1e-12, elementwise_affine=True)
+            (dropout): Dropout(p=0.144, inplace=False)
+          )
+        )
+      )
+    )
+  )
+  (dropout): Dropout(p=0.3, inplace=False)
+  (mlp): SimpleMLP(
+    (model): Sequential(
+      (0): Linear(in_features=384, out_features=1, bias=True)
+    )
+  )
+) FaithfulTLRegressor(
+  (tl_model): HookedEncoder(
+    (embed): BertEmbed(
+      (embed): Embed()
+      (pos_embed): PosEmbed()
+      (token_type_embed): TokenTypeEmbed()
+      (ln): LayerNorm(
+        (hook_scale): HookPoint()
+        (hook_normalized): HookPoint()
+      )
+      (hook_embed): HookPoint()
+      (hook_pos_embed): HookPoint()
+      (hook_token_type_embed): HookPoint()
+    )
+    (blocks): ModuleList(
+      (0-2): 3 x BertBlock(
+        (attn): Attention(
+          (hook_k): HookPoint()
+          (hook_q): HookPoint()
+          (hook_v): HookPoint()
+          (hook_z): HookPoint()
+          (hook_attn_scores): HookPoint()
+          (hook_pattern): HookPoint()
+          (hook_result): HookPoint()
+        )
+        (ln1): LayerNorm(
+          (hook_scale): HookPoint()
+          (hook_normalized): HookPoint()
+        )
+        (mlp): MLP(
+          (hook_pre): HookPoint()
+          (hook_post): HookPoint()
+        )
+        (ln2): LayerNorm(
+          (hook_scale): HookPoint()
+          (hook_normalized): HookPoint()
+        )
+        (hook_q_input): HookPoint()
+        (hook_k_input): HookPoint()
+        (hook_v_input): HookPoint()
+        (hook_attn_out): HookPoint()
+        (hook_mlp_in): HookPoint()
+        (hook_mlp_out): HookPoint()
+        (hook_resid_pre): HookPoint()
+        (hook_resid_mid): HookPoint()
+        (hook_resid_post): HookPoint()
+        (hook_normalized_resid_post): HookPoint()
+      )
+    )
+    (mlm_head): BertMLMHead(
+      (act_fn): GELU(approximate='none')
+      (ln): LayerNorm(
+        (hook_scale): HookPoint()
+        (hook_normalized): HookPoint()
+      )
+    )
+    (unembed): Unembed()
+    (hook_full_embed): HookPoint()
+  )
+  (mlp_head): Linear(in_features=384, out_features=1, bias=True)
+  (dropout): Dropout(p=0.3, inplace=False)
+) StandardScaler()
+The difference between the final embeddings are less than 0.001: True
+The predictions are equivalent: True
+Testing ablation on 4741 molecules
+Target range: 0.011 to 10.666
+Running ablation analysis with evaluation metrics...
+Testing 11 ablation percentages with 10 seeds each
+Test molecules: 4741
+Using training set normalization: mean=3.7252, std=2.2394
+
+Testing MLP ablation...
+  Ablating 0.0% of MLP neurons...
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+  Ablating 10.0% of MLP neurons...
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+  Ablating 20.0% of MLP neurons...
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+  Ablating 30.0% of MLP neurons...
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+  Ablating 40.0% of MLP neurons...
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+  Ablating 50.0% of MLP neurons...
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+  Ablating 60.0% of MLP neurons...
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+  Ablating 70.0% of MLP neurons...
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+  Ablating 80.0% of MLP neurons...
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+  Ablating 90.0% of MLP neurons...
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+  Ablating 100.0% of MLP neurons...
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+
+Testing attention ablation...
+  Ablating 0.0% of attention heads...
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+  Ablating 10.0% of attention heads...
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+  Ablating 20.0% of attention heads...
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+  Ablating 30.0% of attention heads...
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+  Ablating 40.0% of attention heads...
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+  Ablating 50.0% of attention heads...
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+  Ablating 60.0% of attention heads...
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+  Ablating 70.0% of attention heads...
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+  Ablating 80.0% of attention heads...
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+  Ablating 90.0% of attention heads...
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+  Ablating 100.0% of attention heads...
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+
+Testing combined ablation...
+  Ablating 0.0% of attention heads and mlp neurons...
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+  Ablating 10.0% of attention heads and mlp neurons...
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+  Ablating 20.0% of attention heads and mlp neurons...
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+  Ablating 30.0% of attention heads and mlp neurons...
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+  Ablating 40.0% of attention heads and mlp neurons...
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+  Ablating 50.0% of attention heads and mlp neurons...
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+  Ablating 60.0% of attention heads and mlp neurons...
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+  Ablating 70.0% of attention heads and mlp neurons...
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+  Ablating 80.0% of attention heads and mlp neurons...
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+  Ablating 90.0% of attention heads and mlp neurons...
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+  Ablating 100.0% of attention heads and mlp neurons...
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+Using training set normalization: mean=3.7252, std=2.2394
+/home1/s5193400/MoLe/mole/utils/tl_regression.py:330: UserWarning: No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
+  plt.legend(loc='best', fontsize=14)
+/home1/s5193400/MoLe/mole/utils/tl_regression.py:351: UserWarning: No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
+  plt.legend(loc='best', fontsize=14)
+Ablation analysis complete!
+10
+Ablation metrics plots saved to /home1/s5193400/MoLe/results/hce/ablation:
+  • mae_ablation_plot.pdf
+  • r2_ablation_plot.pdf
+  • rmse_ablation_plot.pdf
+  • mae_comparison_bar_plot.pdf
+10
+Ablation metrics plots saved to /home1/s5193400/MoLe/results/hce/ablation:
+  • mae_ablation_plot.pdf
+  • r2_ablation_plot.pdf
+  • rmse_ablation_plot.pdf
+  • mae_comparison_bar_plot.pdf
+10
+Ablation metrics plots saved to /home1/s5193400/MoLe/results/hce/ablation:
+  • mae_ablation_plot.pdf
+  • r2_ablation_plot.pdf
+  • rmse_ablation_plot.pdf
+  • mae_comparison_bar_plot.pdf
+Processing Cluster 1: 9834 molecules...
+Processing Cluster 2: 3037 molecules...
+Processing Cluster 3: 4675 molecules...
+Processing Cluster 4: 6157 molecules...
+Targets (first 20): [2.074291147217349, 5.8113209828074295, 5.63899695250001, 2.127612323189219, 2.649138331245567, 6.139665358657241, 2.1721073023848345, 4.0502784013001545, 7.585032862018688, 5.0084414564157695, 3.839682540682815, 1.9848674704504208, 9.000098842736596, 5.471986413225881, 1.4943904799029184, 6.209748192794313, 3.4927143209126035, 0.7934086189857381, 8.473077184176049, 0.8271558907246265]
+max target and min: (0.0016248706180269, 10.802524472041602)
+max and min are (3.6357716503413786, 3.6357716503413786)
+Layer Embedding predictions (first 20): [3.63577165 3.63577165 3.63577165 3.63577165 3.63577165 3.63577165
+ 3.63577165 3.63577165 3.63577165 3.63577165 3.63577165 3.63577165
+ 3.63577165 3.63577165 3.63577165 3.63577165 3.63577165 3.63577165
+ 3.63577165 3.63577165]
+max and min are (4.650972381300054, 3.5280878326845126)
+Layer 1 predictions (first 20): [3.7623203  4.22570546 4.46942747 3.96896937 3.83322094 4.4474005
+ 4.21485078 3.93867958 4.50661795 4.25888035 4.34854749 4.27048757
+ 4.24819586 4.47009732 4.4929708  4.6257648  4.0806197  3.72074262
+ 4.44242562 4.09218561]
+max and min are (5.898307586075232, 2.1354031545490653)
+Layer 2 predictions (first 20): [2.95592331 5.25808788 4.54538625 2.98105034 3.4140059  5.11284909
+ 4.30594959 3.33213959 4.84318624 5.17354479 4.59559267 4.20018347
+ 5.19360904 4.47756529 4.42428143 5.30265943 2.78440631 2.94042764
+ 5.52022723 2.91225766]
+max and min are (10.40449287185619, -0.337420818309901)
+Layer 3 predictions (first 20): [1.83820702 6.64816738 5.71709116 1.95325199 2.18780033 6.88025361
+ 2.15069734 4.3902994  8.15284512 4.63883659 3.3768264  2.3439291
+ 9.56959038 5.59329237 1.25935787 7.36284854 3.40231636 0.54056269
+ 7.52543172 0.38891314]
+Cluster 1 R² scores by layer: {'Embedding': -0.1551911924296654, '1': 0.021270875547925616, '2': 0.1999118155610281, '3': 0.9266338944947067}
+Cluster 2 R² scores by layer: {'Embedding': -0.6384347720377037, '1': -1.2396598493701911, '2': -0.33764507318097725, '3': 0.8066984732498156}
+Cluster 3 R² scores by layer: {'Embedding': -0.17197771206871404, '1': -0.643374849781827, '2': -0.2343507678320078, '3': 0.8023003997654751}
+Cluster 4 R² scores by layer: {'Embedding': -0.00995112185629976, '1': -0.052965337428424464, '2': 0.21557837761530307, '3': 0.9090895008941052}
+Variance ratios by layer: {'Embedding': 3.5376772479289083e-31, '1': 0.009208178759965411, '2': 0.1487087718331716, '3': 1.208038709043083}
+Global R² scores by layer: {'Embedding': -0.0016731881042337804, '1': 0.01249204217259925, '2': 0.2450316985300245, '3': 0.9164760450755479}
+
+###############################################################################
+Hábrók Cluster
+Job 28387727 for user s5193400
+Finished at: Fri Apr 10 14:01:14 CEST 2026
+
+Job details:
+============
+
+Job ID                         : 28387727
+Name                           : training_job
+User                           : s5193400
+Partition                      : gpushort
+Nodes                          : a100gpu6
+Number of Nodes                : 1
+Cores                          : 8
+Number of Tasks                : 1
+State                          : COMPLETED  
+Submit                         : 2026-04-10T11:42:49
+Start                          : 2026-04-10T11:45:15
+End                            : 2026-04-10T14:01:09
+Reserved walltime              : 03:00:00
+Used walltime                  : 02:15:54
+Used CPU time                  : 02:29:14 (Efficiency: 13.73%)
+% User (Computation)           : 93.97%
+% System (I/O)                 :  6.04%
+Total memory reserved          : 12G
+Maximum memory used            : 3.13G
+Requested GPUs                 : 1
+Allocated GPUs                 : a100=1
+Max GPU utilization            : 99%
+Max GPU memory used            : 15.39G
+
+Acknowledgements:
+=================
+
+Please see this page for information about acknowledging Hábrók in your publications:
+
+https://wiki.hpc.rug.nl/habrok/introduction/scientific_output
+
+################################################################################
