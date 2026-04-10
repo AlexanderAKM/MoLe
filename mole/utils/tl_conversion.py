@@ -31,12 +31,6 @@ def get_final_encoder_output(
     one_zero_attention_mask: Optional[torch.Tensor] = None,
 ) -> torch.Tensor:
     """Return final encoder states in a TL-version-robust way."""
-    if hasattr(tl_model, "encoder_output"):
-        return tl_model.encoder_output(
-            input_ids,
-            one_zero_attention_mask=one_zero_attention_mask,
-        )
-
     _, cache = tl_model.run_with_cache(
         input_ids,
         one_zero_attention_mask=one_zero_attention_mask,
