@@ -17,6 +17,7 @@ from pathlib import Path
 import torch
 import pandas as pd
 import os
+os.environ.setdefault("TOKENIZERS_PARALLELISM", "false")
 
 _REPO = Path(__file__).resolve().parents[1]
 
