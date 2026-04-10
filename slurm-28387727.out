@@ -1,0 +1,931 @@
+/home1/s5193400/MoLe/.venv/bin/python
+/home1/s5193400/MoLe/.venv/lib/python3.11/site-packages/typing_extensions.py
+/home1/s5193400/MoLe/.venv/lib/python3.11/site-packages/huggingface_hub/file_download.py:949: FutureWarning: `resume_download` is deprecated and will be removed in version 1.0.0. Downloads always resume when possible. If you want to force a new download, use `force_download=True`.
+  warnings.warn(
+/home1/s5193400/MoLe/.venv/lib/python3.11/site-packages/torch/_utils.py:831: UserWarning: TypedStorage is deprecated. It will be removed in the future and UntypedStorage will be the only storage class. This should only matter to you if you are using storages directly.  To access UntypedStorage directly, use tensor.untyped_storage() instead of tensor.storage()
+  return self.fget.__get__(instance, owner)()
+/home1/s5193400/MoLe/.venv/lib/python3.11/site-packages/sklearn/base.py:463: InconsistentVersionWarning: Trying to unpickle estimator StandardScaler from version 1.6.1 when using version 1.8.0. This might lead to breaking code or invalid results. Use at your own risk. For more info please refer to:
+https://scikit-learn.org/stable/model_persistence.html#security-maintainability-limitations
+  warnings.warn(
+cuda
+Loaded hyperparameters from /home1/s5193400/MoLe/trained_models/train_esol/chemberta/hyperparameters.json
+Hyperparameters: {'dropout': 0.3, 'hidden_channels': 128, 'num_mlp_layers': 1, 'lr': 5e-05, 'l2_lambda': 0.01, 'l1_lambda': 0.0, 'batch_size': 32, 'epochs': 100}
+mlp
+{'hidden_channels': 128, 'num_numerical_features': 384, 'num_mlp_layers': 1, 'dropout': 0.3}
+mlp architecture:
+{'hidden_channels': 128, 'num_numerical_features': 384, 'num_mlp_layers': 1, 'dropout': 0.3}
+Loaded scaler from /home1/s5193400/MoLe/trained_models/train_esol/chemberta/normalization_scaler.pkl
+Moving model to device:  cuda
+Moving model to device:  cuda
+RobertaModel(
+  (embeddings): RobertaEmbeddings(
+    (word_embeddings): Embedding(600, 384, padding_idx=1)
+    (position_embeddings): Embedding(515, 384, padding_idx=1)
+    (token_type_embeddings): Embedding(1, 384)
+    (LayerNorm): LayerNorm((384,), eps=1e-12, elementwise_affine=True)
+    (dropout): Dropout(p=0.144, inplace=False)
+  )
+  (encoder): RobertaEncoder(
+    (layer): ModuleList(
+      (0-2): 3 x RobertaLayer(
+        (attention): RobertaAttention(
+          (self): RobertaSelfAttention(
+            (query): Linear(in_features=384, out_features=384, bias=True)
+            (key): Linear(in_features=384, out_features=384, bias=True)
+            (value): Linear(in_features=384, out_features=384, bias=True)
+            (dropout): Dropout(p=0.109, inplace=False)
+          )
+          (output): RobertaSelfOutput(
+            (dense): Linear(in_features=384, out_features=384, bias=True)
+            (LayerNorm): LayerNorm((384,), eps=1e-12, elementwise_affine=True)
+            (dropout): Dropout(p=0.144, inplace=False)
+          )
+        )
+        (intermediate): RobertaIntermediate(
+          (dense): Linear(in_features=384, out_features=464, bias=True)
+          (intermediate_act_fn): GELUActivation()
+        )
+        (output): RobertaOutput(
+          (dense): Linear(in_features=464, out_features=384, bias=True)
+          (LayerNorm): LayerNorm((384,), eps=1e-12, elementwise_affine=True)
+          (dropout): Dropout(p=0.144, inplace=False)
+        )
+      )
+    )
+  )
+) HookedEncoder(
+  (embed): BertEmbed(
+    (embed): Embed()
+    (pos_embed): PosEmbed()
+    (token_type_embed): TokenTypeEmbed()
+    (ln): LayerNorm(
+      (hook_scale): HookPoint()
+      (hook_normalized): HookPoint()
+    )
+    (hook_embed): HookPoint()
+    (hook_pos_embed): HookPoint()
+    (hook_token_type_embed): HookPoint()
+  )
+  (blocks): ModuleList(
+    (0-2): 3 x BertBlock(
+      (attn): Attention(
+        (hook_k): HookPoint()
+        (hook_q): HookPoint()
+        (hook_v): HookPoint()
+        (hook_z): HookPoint()
+        (hook_attn_scores): HookPoint()
+        (hook_pattern): HookPoint()
+        (hook_result): HookPoint()
+      )
+      (ln1): LayerNorm(
+        (hook_scale): HookPoint()
+        (hook_normalized): HookPoint()
+      )
+      (mlp): MLP(
+        (hook_pre): HookPoint()
+        (hook_post): HookPoint()
+      )
+      (ln2): LayerNorm(
+        (hook_scale): HookPoint()
+        (hook_normalized): HookPoint()
+      )
+      (hook_q_input): HookPoint()
+      (hook_k_input): HookPoint()
+      (hook_v_input): HookPoint()
+      (hook_attn_out): HookPoint()
+      (hook_mlp_in): HookPoint()
+      (hook_mlp_out): HookPoint()
+      (hook_resid_pre): HookPoint()
+      (hook_resid_mid): HookPoint()
+      (hook_resid_post): HookPoint()
+      (hook_normalized_resid_post): HookPoint()
+    )
+  )
+  (mlm_head): BertMLMHead(
+    (act_fn): GELU(approximate='none')
+    (ln): LayerNorm(
+      (hook_scale): HookPoint()
+      (hook_normalized): HookPoint()
+    )
+  )
+  (unembed): Unembed()
+  (hook_full_embed): HookPoint()
+) RobertaTokenizerFast(name_or_path='DeepChem/ChemBERTa-77M-MLM', vocab_size=591, model_max_length=512, is_fast=True, padding_side='right', truncation_side='right', special_tokens={'bos_token': '<s>', 'eos_token': '</s>', 'unk_token': '[UNK]', 'sep_token': '[SEP]', 'pad_token': '[PAD]', 'cls_token': '[CLS]', 'mask_token': '[MASK]'}, clean_up_tokenization_spaces=True),  added_tokens_decoder={
+	0: AddedToken("[PAD]", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),
+	11: AddedToken("[UNK]", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),
+	12: AddedToken("[CLS]", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),
+	13: AddedToken("[SEP]", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),
+	14: AddedToken("[MASK]", rstrip=False, lstrip=True, single_word=False, normalized=False, special=True),
+	591: AddedToken("<s>", rstrip=False, lstrip=False, single_word=False, normalized=True, special=True),
+	592: AddedToken("</s>", rstrip=False, lstrip=False, single_word=False, normalized=True, special=True),
+} ChembertaRegressorWithFeatures(
+  (roberta): RobertaModel(
+    (embeddings): RobertaEmbeddings(
+      (word_embeddings): Embedding(600, 384, padding_idx=1)
+      (position_embeddings): Embedding(515, 384, padding_idx=1)
+      (token_type_embeddings): Embedding(1, 384)
+      (LayerNorm): LayerNorm((384,), eps=1e-12, elementwise_affine=True)
+      (dropout): Dropout(p=0.144, inplace=False)
+    )
+    (encoder): RobertaEncoder(
+      (layer): ModuleList(
+        (0-2): 3 x RobertaLayer(
+          (attention): RobertaAttention(
+            (self): RobertaSelfAttention(
+              (query): Linear(in_features=384, out_features=384, bias=True)
+              (key): Linear(in_features=384, out_features=384, bias=True)
+              (value): Linear(in_features=384, out_features=384, bias=True)
+              (dropout): Dropout(p=0.109, inplace=False)
+            )
+            (output): RobertaSelfOutput(
+              (dense): Linear(in_features=384, out_features=384, bias=True)
+              (LayerNorm): LayerNorm((384,), eps=1e-12, elementwise_affine=True)
+              (dropout): Dropout(p=0.144, inplace=False)
+            )
+          )
+          (intermediate): RobertaIntermediate(
+            (dense): Linear(in_features=384, out_features=464, bias=True)
+            (intermediate_act_fn): GELUActivation()
+          )
+          (output): RobertaOutput(
+            (dense): Linear(in_features=464, out_features=384, bias=True)
+            (LayerNorm): LayerNorm((384,), eps=1e-12, elementwise_affine=True)
+            (dropout): Dropout(p=0.144, inplace=False)
+          )
+        )
+      )
+    )
+  )
+  (dropout): Dropout(p=0.3, inplace=False)
+  (mlp): SimpleMLP(
+    (model): Sequential(
+      (0): Linear(in_features=384, out_features=1, bias=True)
+    )
+  )
+) FaithfulTLRegressor(
+  (tl_model): HookedEncoder(
+    (embed): BertEmbed(
+      (embed): Embed()
+      (pos_embed): PosEmbed()
+      (token_type_embed): TokenTypeEmbed()
+      (ln): LayerNorm(
+        (hook_scale): HookPoint()
+        (hook_normalized): HookPoint()
+      )
+      (hook_embed): HookPoint()
+      (hook_pos_embed): HookPoint()
+      (hook_token_type_embed): HookPoint()
+    )
+    (blocks): ModuleList(
+      (0-2): 3 x BertBlock(
+        (attn): Attention(
+          (hook_k): HookPoint()
+          (hook_q): HookPoint()
+          (hook_v): HookPoint()
+          (hook_z): HookPoint()
+          (hook_attn_scores): HookPoint()
+          (hook_pattern): HookPoint()
+          (hook_result): HookPoint()
+        )
+        (ln1): LayerNorm(
+          (hook_scale): HookPoint()
+          (hook_normalized): HookPoint()
+        )
+        (mlp): MLP(
+          (hook_pre): HookPoint()
+          (hook_post): HookPoint()
+        )
+        (ln2): LayerNorm(
+          (hook_scale): HookPoint()
+          (hook_normalized): HookPoint()
+        )
+        (hook_q_input): HookPoint()
+        (hook_k_input): HookPoint()
+        (hook_v_input): HookPoint()
+        (hook_attn_out): HookPoint()
+        (hook_mlp_in): HookPoint()
+        (hook_mlp_out): HookPoint()
+        (hook_resid_pre): HookPoint()
+        (hook_resid_mid): HookPoint()
+        (hook_resid_post): HookPoint()
+        (hook_normalized_resid_post): HookPoint()
+      )
+    )
+    (mlm_head): BertMLMHead(
+      (act_fn): GELU(approximate='none')
+      (ln): LayerNorm(
+        (hook_scale): HookPoint()
+        (hook_normalized): HookPoint()
+      )
+    )
+    (unembed): Unembed()
+    (hook_full_embed): HookPoint()
+  )
+  (mlp_head): Linear(in_features=384, out_features=1, bias=True)
+  (dropout): Dropout(p=0.3, inplace=False)
+) StandardScaler()
+The difference between the final embeddings are less than 0.001: True
+The predictions are equivalent: True
+Testing ablation on 226 molecules
+Target range: -9.332 to 1.100
+Running ablation analysis with evaluation metrics...
+Testing 11 ablation percentages with 10 seeds each
+Test molecules: 226
+Using training set normalization: mean=-3.1211, std=2.0881
+
+Testing MLP ablation...
+  Ablating 0.0% of MLP neurons...
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+  Ablating 10.0% of MLP neurons...
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+  Ablating 20.0% of MLP neurons...
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+  Ablating 30.0% of MLP neurons...
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+  Ablating 40.0% of MLP neurons...
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+  Ablating 50.0% of MLP neurons...
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+  Ablating 60.0% of MLP neurons...
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+  Ablating 70.0% of MLP neurons...
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+  Ablating 80.0% of MLP neurons...
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+  Ablating 90.0% of MLP neurons...
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+  Ablating 100.0% of MLP neurons...
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+
+Testing attention ablation...
+  Ablating 0.0% of attention heads...
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+  Ablating 10.0% of attention heads...
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+  Ablating 20.0% of attention heads...
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+  Ablating 30.0% of attention heads...
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+  Ablating 40.0% of attention heads...
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+  Ablating 50.0% of attention heads...
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+  Ablating 60.0% of attention heads...
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+  Ablating 70.0% of attention heads...
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+  Ablating 80.0% of attention heads...
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+  Ablating 90.0% of attention heads...
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+  Ablating 100.0% of attention heads...
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+
+Testing combined ablation...
+  Ablating 0.0% of attention heads and mlp neurons...
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+  Ablating 10.0% of attention heads and mlp neurons...
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+  Ablating 20.0% of attention heads and mlp neurons...
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+  Ablating 30.0% of attention heads and mlp neurons...
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+  Ablating 40.0% of attention heads and mlp neurons...
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+  Ablating 50.0% of attention heads and mlp neurons...
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+  Ablating 60.0% of attention heads and mlp neurons...
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+  Ablating 70.0% of attention heads and mlp neurons...
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+  Ablating 80.0% of attention heads and mlp neurons...
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+  Ablating 90.0% of attention heads and mlp neurons...
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+  Ablating 100.0% of attention heads and mlp neurons...
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+Using training set normalization: mean=-3.1211, std=2.0881
+/home1/s5193400/MoLe/mole/utils/tl_regression.py:256: UserWarning: Tight layout not applied. The bottom and top margins cannot be made large enough to accommodate all Axes decorations.
+  plt.tight_layout()
+/home1/s5193400/MoLe/mole/utils/tl_regression.py:330: UserWarning: No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
+  plt.legend(loc='best', fontsize=14)
+/home1/s5193400/MoLe/mole/utils/tl_regression.py:351: UserWarning: No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
+  plt.legend(loc='best', fontsize=14)
+/home1/s5193400/MoLe/.venv/lib/python3.11/site-packages/huggingface_hub/file_download.py:949: FutureWarning: `resume_download` is deprecated and will be removed in version 1.0.0. Downloads always resume when possible. If you want to force a new download, use `force_download=True`.
+  warnings.warn(
+/home1/s5193400/MoLe/.venv/lib/python3.11/site-packages/sklearn/base.py:463: InconsistentVersionWarning: Trying to unpickle estimator StandardScaler from version 1.7.1 when using version 1.8.0. This might lead to breaking code or invalid results. Use at your own risk. For more info please refer to:
+https://scikit-learn.org/stable/model_persistence.html#security-maintainability-limitations
+  warnings.warn(
+Ablation analysis complete!
+10
+Ablation metrics plots saved to /home1/s5193400/MoLe/results/esol/ablation:
+  • mae_ablation_plot.pdf
+  • r2_ablation_plot.pdf
+  • rmse_ablation_plot.pdf
+  • mae_comparison_bar_plot.pdf
+10
+Ablation metrics plots saved to /home1/s5193400/MoLe/results/esol/ablation:
+  • mae_ablation_plot.pdf
+  • r2_ablation_plot.pdf
+  • rmse_ablation_plot.pdf
+  • mae_comparison_bar_plot.pdf
+10
+Ablation metrics plots saved to /home1/s5193400/MoLe/results/esol/ablation:
+  • mae_ablation_plot.pdf
+  • r2_ablation_plot.pdf
+  • rmse_ablation_plot.pdf
+  • mae_comparison_bar_plot.pdf
+Processing Cluster 1: 51 molecules...
+Processing Cluster 2: 102 molecules...
+Processing Cluster 3: 119 molecules...
+Processing Cluster 4: 119 molecules...
+Processing Cluster 5: 35 molecules...
+Processing Cluster 6: 89 molecules...
+Processing Cluster 7: 181 molecules...
+Processing Cluster 8: 31 molecules...
+Processing Cluster 9: 59 molecules...
+Processing Cluster 10: 57 molecules...
+Processing Cluster 11: 41 molecules...
+Processing Cluster 12: 244 molecules...
+Targets (first 20): [-3.68, -1.96, -3.45, -3.43, -4.65, -1.13, -1.06, -5.66, -7.32, -2.06, -4.16, -5.35, -4.13, -3.999, -3.11, -6.005, -3.09, -4.63, -4.42, -5.184]
+max target and min: (-11.6, 1.58)
+max and min are (-3.101330675192934, -3.101330675192934)
+Layer Embedding predictions (first 20): [-3.10133068 -3.10133068 -3.10133068 -3.10133068 -3.10133068 -3.10133068
+ -3.10133068 -3.10133068 -3.10133068 -3.10133068 -3.10133068 -3.10133068
+ -3.10133068 -3.10133068 -3.10133068 -3.10133068 -3.10133068 -3.10133068
+ -3.10133068 -3.10133068]
+max and min are (-1.9438056916820172, -3.887763120418034)
+Layer 1 predictions (first 20): [-2.16722455 -2.99392022 -2.87995053 -2.16445964 -3.18227598 -3.24508688
+ -2.92902148 -2.80881616 -2.85324733 -3.05495293 -2.06871687 -3.14984016
+ -3.12211592 -3.14895756 -2.82452911 -2.52174371 -2.84321848 -3.1458149
+ -3.16799065 -3.18951827]
+max and min are (-2.0777620670682353, -4.794517855428662)
+Layer 2 predictions (first 20): [-3.07637464 -3.62718734 -3.59978048 -2.98657638 -3.60771429 -3.59299986
+ -3.70460988 -3.66968228 -3.39816114 -3.29384504 -2.96168941 -3.4473811
+ -3.28464707 -3.76359701 -3.56009524 -3.38836298 -3.55895841 -3.40885248
+ -3.60341055 -3.53000182]
+max and min are (1.389362645379542, -9.273614394650307)
+Layer 3 predictions (first 20): [-3.28133623 -2.18204137 -3.38472481 -3.31598063 -4.51209327 -1.48924933
+ -2.01483067 -4.36016891 -5.19627466 -1.98428624 -3.65768382 -5.10155058
+ -4.3649282  -4.02780992 -2.91268577 -6.09710431 -2.84709884 -4.69699459
+ -4.13196613 -4.9858289 ]
+Cluster 1 R² scores by layer: {'Embedding': -0.6875984592122786, '1': -1.0982120240003703, '2': -0.32756709484461277, '3': 0.7308340555993453}
+Cluster 2 R² scores by layer: {'Embedding': -0.005537865387737595, '1': -0.1057854959464426, '2': 0.15872517682577025, '3': 0.8910651496624813}
+Cluster 3 R² scores by layer: {'Embedding': -0.0029159978158284083, '1': -0.03381700732606796, '2': 0.24206089905691996, '3': 0.9161661416579471}
+Cluster 4 R² scores by layer: {'Embedding': -0.005754059175621107, '1': -0.018288835545231752, '2': 0.13456153221694256, '3': 0.9412847944385546}
+Cluster 5 R² scores by layer: {'Embedding': -8.748725357517595, '1': -6.5505953430939, '2': -5.1061349243246035, '3': 0.6940778079541556}
+Cluster 6 R² scores by layer: {'Embedding': -0.0643342279635637, '1': -0.3235556327765572, '2': 0.04980006450710406, '3': 0.8291789845922823}
+Cluster 7 R² scores by layer: {'Embedding': -0.7775765879393273, '1': -0.7208489037333496, '2': -0.48597175958351513, '3': 0.8726057350652547}
+Cluster 8 R² scores by layer: {'Embedding': -1.999523144360031, '1': -1.0398174598892451, '2': -0.581791590040337, '3': 0.43823264397562056}
+Cluster 9 R² scores by layer: {'Embedding': -1.866587431928847, '1': -1.111173341970387, '2': -1.0837911650213443, '3': 0.912654470468765}
+Cluster 10 R² scores by layer: {'Embedding': -0.7954331520043658, '1': -0.3654120168418309, '2': -0.2360250979666043, '3': 0.9571329504606894}
+Cluster 11 R² scores by layer: {'Embedding': -1.8014028416318912, '1': -1.4440913209035866, '2': -0.5325328447422457, '3': 0.9381407059799667}
+Cluster 12 R² scores by layer: {'Embedding': -0.23048479544309242, '1': -0.4340990838288665, '2': -0.07138994847461899, '3': 0.8194919700569221}
+Variance ratios by layer: {'Embedding': 0.0, '1': 0.043593872314061116, '2': 0.051388214894422725, '3': 1.0491448653113502}
+Global R² scores by layer: {'Embedding': -0.0005976499656568102, '1': 0.030857694315964745, '2': 0.23573553319298102, '3': 0.9231099032849301}
+Activation patch pair:
+  source: CO
+  target: CC
+source pred=0.8307, target pred=-0.9158
+   layer  patched_prediction  delta_vs_target  delta_vs_source
+0      1           -0.394101         0.521711        -1.224760
+1      2           -0.302935         0.612877        -1.133594
+2      3            0.830658         1.746471         0.000000
+[Head patching] source pred=0.8307, target pred=-0.9158
+   layer  head  patched_prediction  delta_vs_target  delta_vs_source
+0      1     0           -0.902593         0.013220        -1.733251
+1      1     1           -0.915085         0.000728        -1.745743
+2      1     2           -0.783889         0.131924        -1.614547
+3      1     3           -0.904021         0.011792        -1.734679
+4      1     4           -0.896484         0.019328        -1.727142
+cuda
+Loaded hyperparameters from /home1/s5193400/MoLe/trained_models/train_qm9_1/chemberta/hyperparameters.json
+Hyperparameters: {'dropout': 0.3, 'hidden_channels': 128, 'num_mlp_layers': 1, 'lr': 0.001, 'l2_lambda': 0.01, 'l1_lambda': 0.0, 'batch_size': 16, 'epochs': 20}
+mlp
+{'hidden_channels': 128, 'num_numerical_features': 384, 'num_mlp_layers': 1, 'dropout': 0.3}
+mlp architecture:
+{'hidden_channels': 128, 'num_numerical_features': 384, 'num_mlp_layers': 1, 'dropout': 0.3}
+Loaded scaler from /home1/s5193400/MoLe/trained_models/train_qm9_1/chemberta/normalization_scaler.pkl
+Moving model to device:  cuda
+Moving model to device:  cuda
+RobertaModel(
+  (embeddings): RobertaEmbeddings(
+    (word_embeddings): Embedding(600, 384, padding_idx=1)
+    (position_embeddings): Embedding(515, 384, padding_idx=1)
+    (token_type_embeddings): Embedding(1, 384)
+    (LayerNorm): LayerNorm((384,), eps=1e-12, elementwise_affine=True)
+    (dropout): Dropout(p=0.144, inplace=False)
+  )
+  (encoder): RobertaEncoder(
+    (layer): ModuleList(
+      (0-2): 3 x RobertaLayer(
+        (attention): RobertaAttention(
+          (self): RobertaSelfAttention(
+            (query): Linear(in_features=384, out_features=384, bias=True)
+            (key): Linear(in_features=384, out_features=384, bias=True)
+            (value): Linear(in_features=384, out_features=384, bias=True)
+            (dropout): Dropout(p=0.109, inplace=False)
+          )
+          (output): RobertaSelfOutput(
+            (dense): Linear(in_features=384, out_features=384, bias=True)
+            (LayerNorm): LayerNorm((384,), eps=1e-12, elementwise_affine=True)
+            (dropout): Dropout(p=0.144, inplace=False)
+          )
+        )
+        (intermediate): RobertaIntermediate(
+          (dense): Linear(in_features=384, out_features=464, bias=True)
+          (intermediate_act_fn): GELUActivation()
+        )
+        (output): RobertaOutput(
+          (dense): Linear(in_features=464, out_features=384, bias=True)
+          (LayerNorm): LayerNorm((384,), eps=1e-12, elementwise_affine=True)
+          (dropout): Dropout(p=0.144, inplace=False)
+        )
+      )
+    )
+  )
+) HookedEncoder(
+  (embed): BertEmbed(
+    (embed): Embed()
+    (pos_embed): PosEmbed()
+    (token_type_embed): TokenTypeEmbed()
+    (ln): LayerNorm(
+      (hook_scale): HookPoint()
+      (hook_normalized): HookPoint()
+    )
+    (hook_embed): HookPoint()
+    (hook_pos_embed): HookPoint()
+    (hook_token_type_embed): HookPoint()
+  )
+  (blocks): ModuleList(
+    (0-2): 3 x BertBlock(
+      (attn): Attention(
+        (hook_k): HookPoint()
+        (hook_q): HookPoint()
+        (hook_v): HookPoint()
+        (hook_z): HookPoint()
+        (hook_attn_scores): HookPoint()
+        (hook_pattern): HookPoint()
+        (hook_result): HookPoint()
+      )
+      (ln1): LayerNorm(
+        (hook_scale): HookPoint()
+        (hook_normalized): HookPoint()
+      )
+      (mlp): MLP(
+        (hook_pre): HookPoint()
+        (hook_post): HookPoint()
+      )
+      (ln2): LayerNorm(
+        (hook_scale): HookPoint()
+        (hook_normalized): HookPoint()
+      )
+      (hook_q_input): HookPoint()
+      (hook_k_input): HookPoint()
+      (hook_v_input): HookPoint()
+      (hook_attn_out): HookPoint()
+      (hook_mlp_in): HookPoint()
+      (hook_mlp_out): HookPoint()
+      (hook_resid_pre): HookPoint()
+      (hook_resid_mid): HookPoint()
+      (hook_resid_post): HookPoint()
+      (hook_normalized_resid_post): HookPoint()
+    )
+  )
+  (mlm_head): BertMLMHead(
+    (act_fn): GELU(approximate='none')
+    (ln): LayerNorm(
+      (hook_scale): HookPoint()
+      (hook_normalized): HookPoint()
+    )
+  )
+  (unembed): Unembed()
+  (hook_full_embed): HookPoint()
+) RobertaTokenizerFast(name_or_path='DeepChem/ChemBERTa-77M-MLM', vocab_size=591, model_max_length=512, is_fast=True, padding_side='right', truncation_side='right', special_tokens={'bos_token': '<s>', 'eos_token': '</s>', 'unk_token': '[UNK]', 'sep_token': '[SEP]', 'pad_token': '[PAD]', 'cls_token': '[CLS]', 'mask_token': '[MASK]'}, clean_up_tokenization_spaces=True),  added_tokens_decoder={
+	0: AddedToken("[PAD]", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),
+	11: AddedToken("[UNK]", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),
+	12: AddedToken("[CLS]", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),
+	13: AddedToken("[SEP]", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),
+	14: AddedToken("[MASK]", rstrip=False, lstrip=True, single_word=False, normalized=False, special=True),
+	591: AddedToken("<s>", rstrip=False, lstrip=False, single_word=False, normalized=True, special=True),
+	592: AddedToken("</s>", rstrip=False, lstrip=False, single_word=False, normalized=True, special=True),
+} ChembertaRegressorWithFeatures(
+  (roberta): RobertaModel(
+    (embeddings): RobertaEmbeddings(
+      (word_embeddings): Embedding(600, 384, padding_idx=1)
+      (position_embeddings): Embedding(515, 384, padding_idx=1)
+      (token_type_embeddings): Embedding(1, 384)
+      (LayerNorm): LayerNorm((384,), eps=1e-12, elementwise_affine=True)
+      (dropout): Dropout(p=0.144, inplace=False)
+    )
+    (encoder): RobertaEncoder(
+      (layer): ModuleList(
+        (0-2): 3 x RobertaLayer(
+          (attention): RobertaAttention(
+            (self): RobertaSelfAttention(
+              (query): Linear(in_features=384, out_features=384, bias=True)
+              (key): Linear(in_features=384, out_features=384, bias=True)
+              (value): Linear(in_features=384, out_features=384, bias=True)
+              (dropout): Dropout(p=0.109, inplace=False)
+            )
+            (output): RobertaSelfOutput(
+              (dense): Linear(in_features=384, out_features=384, bias=True)
+              (LayerNorm): LayerNorm((384,), eps=1e-12, elementwise_affine=True)
+              (dropout): Dropout(p=0.144, inplace=False)
+            )
+          )
+          (intermediate): RobertaIntermediate(
+            (dense): Linear(in_features=384, out_features=464, bias=True)
+            (intermediate_act_fn): GELUActivation()
+          )
+          (output): RobertaOutput(
+            (dense): Linear(in_features=464, out_features=384, bias=True)
+            (LayerNorm): LayerNorm((384,), eps=1e-12, elementwise_affine=True)
+            (dropout): Dropout(p=0.144, inplace=False)
+          )
+        )
+      )
+    )
+  )
+  (dropout): Dropout(p=0.3, inplace=False)
+  (mlp): SimpleMLP(
+    (model): Sequential(
+      (0): Linear(in_features=384, out_features=1, bias=True)
+    )
+  )
+) FaithfulTLRegressor(
+  (tl_model): HookedEncoder(
+    (embed): BertEmbed(
+      (embed): Embed()
+      (pos_embed): PosEmbed()
+      (token_type_embed): TokenTypeEmbed()
+      (ln): LayerNorm(
+        (hook_scale): HookPoint()
+        (hook_normalized): HookPoint()
+      )
+      (hook_embed): HookPoint()
+      (hook_pos_embed): HookPoint()
+      (hook_token_type_embed): HookPoint()
+    )
+    (blocks): ModuleList(
+      (0-2): 3 x BertBlock(
+        (attn): Attention(
+          (hook_k): HookPoint()
+          (hook_q): HookPoint()
+          (hook_v): HookPoint()
+          (hook_z): HookPoint()
+          (hook_attn_scores): HookPoint()
+          (hook_pattern): HookPoint()
+          (hook_result): HookPoint()
+        )
+        (ln1): LayerNorm(
+          (hook_scale): HookPoint()
+          (hook_normalized): HookPoint()
+        )
+        (mlp): MLP(
+          (hook_pre): HookPoint()
+          (hook_post): HookPoint()
+        )
+        (ln2): LayerNorm(
+          (hook_scale): HookPoint()
+          (hook_normalized): HookPoint()
+        )
+        (hook_q_input): HookPoint()
+        (hook_k_input): HookPoint()
+        (hook_v_input): HookPoint()
+        (hook_attn_out): HookPoint()
+        (hook_mlp_in): HookPoint()
+        (hook_mlp_out): HookPoint()
+        (hook_resid_pre): HookPoint()
+        (hook_resid_mid): HookPoint()
+        (hook_resid_post): HookPoint()
+        (hook_normalized_resid_post): HookPoint()
+      )
+    )
+    (mlm_head): BertMLMHead(
+      (act_fn): GELU(approximate='none')
+      (ln): LayerNorm(
+        (hook_scale): HookPoint()
+        (hook_normalized): HookPoint()
+      )
+    )
+    (unembed): Unembed()
+    (hook_full_embed): HookPoint()
+  )
+  (mlp_head): Linear(in_features=384, out_features=1, bias=True)
+  (dropout): Dropout(p=0.3, inplace=False)
+) StandardScaler()
+The difference between the final embeddings are less than 0.001: True
+The predictions are equivalent: True
+Testing ablation on 25803 molecules
+Target range: -104.816 to -14.764
+Running ablation analysis with evaluation metrics...
+Testing 11 ablation percentages with 10 seeds each
+Test molecules: 25803
+Using training set normalization: mean=-70.8965, std=9.4840
+
+Testing MLP ablation...
+  Ablating 0.0% of MLP neurons...
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
+Using training set normalization: mean=-70.8965, std=9.4840
