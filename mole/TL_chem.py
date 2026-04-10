@@ -25,6 +25,12 @@ from mole.utils.tl_validation import validate_conversion, test_prediction_equiva
 from mole.utils.tl_ablation import run_ablation_analysis_with_metrics, plot_ablation_metrics
 from mole.utils.tl_regression import run_regression_lens, plot_individual_molecules_regression_lens
 from mole.utils.tl_regression import compare_molecule_groups_regression_lens, plot_group_molecules_regression_lens
+from mole.utils.tl_patching import (
+    run_pair_activation_patching,
+    run_head_activation_patching,
+    plot_head_patching_heatmap,
+    select_same_length_pair,
+)
 
 # %%
 # For ESOL
@@ -132,6 +138,78 @@ group_results = compare_molecule_groups_regression_lens(
     targets=ordered_targets, results_dir=str(_REPO / "results/esol/regression_lens"), device=DEVICE
 )
 plot_group_molecules_regression_lens(group_results, results_dir=_REPO / "results/esol/regression_lens")
+
+# %%
+# Activation patching on ESOL:
+# pick a same-token-length pair and patch layer-by-layer.
+# Default patches CLS token stream only (token_position=0), which is what the head reads.
+source_smiles, target_smiles = select_same_length_pair(
+    full_data,
+    tokenizer,
+    smiles_column="smiles",
+    target_column=TARGET_COLUMN,
+    min_target_gap=0.5,
+)
+print("Activation patch pair:")
+print(f"  source: {source_smiles}")
+print(f"  target: {target_smiles}")
+
+patching_results = run_pair_activation_patching(
+    tl_encoder,
+    tl_regressor,
+    tokenizer,
+    source_smiles=source_smiles,
+    target_smiles=target_smiles,
+    device=DEVICE,
+    token_position=0,
+    patch_all_positions=False,
+    denormalize=True,
+)
+
+patching_df = pd.DataFrame(patching_results["layer_results"])
+print(
+    f"source pred={patching_results['source_prediction']:.4f}, "
+    f"target pred={patching_results['target_prediction']:.4f}"
+)
+print(patching_df)
+
+esol_patch_dir = _REPO / "results/esol/activation_patching"
+os.makedirs(esol_patch_dir, exist_ok=True)
+patching_df.to_csv(esol_patch_dir / "layerwise_patching_results.csv", index=False)
+
+# %%
+# Attention-head activation patching on ESOL:
+# patches one head at a time at attn.hook_z and saves heatmap-ready outputs.
+head_patching_results = run_head_activation_patching(
+    tl_encoder,
+    tl_regressor,
+    tokenizer,
+    source_smiles=source_smiles,
+    target_smiles=target_smiles,
+    device=DEVICE,
+    token_position=0,
+    patch_all_positions=False,
+    denormalize=True,
+)
+
+head_df = pd.DataFrame(head_patching_results["head_results"])
+print(
+    f"[Head patching] source pred={head_patching_results['source_prediction']:.4f}, "
+    f"target pred={head_patching_results['target_prediction']:.4f}"
+)
+print(head_df.head())
+
+head_df.to_csv(esol_patch_dir / "headwise_patching_results.csv", index=False)
+
+# Heatmap-ready matrix: rows=layer, cols=head, values=delta_vs_target
+head_heatmap_df = head_df.pivot(index="layer", columns="head", values="delta_vs_target")
+head_heatmap_df.to_csv(esol_patch_dir / "headwise_delta_vs_target_matrix.csv")
+plot_head_patching_heatmap(
+    head_df,
+    esol_patch_dir / "headwise_delta_vs_target_heatmap.pdf",
+    value_column="delta_vs_target",
+    title="ESOL Head-wise Activation Patching (delta vs target)",
+)
 
 
 

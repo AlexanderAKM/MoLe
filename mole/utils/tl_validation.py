@@ -20,7 +20,7 @@ from torch.utils.data import DataLoader
 from transformers import RobertaModel, RobertaTokenizerFast
 import transformer_lens as tl
 
-from .tl_conversion import load_chemberta_models, FaithfulTLRegressor
+from .tl_conversion import load_chemberta_models, FaithfulTLRegressor, get_final_encoder_output
 from .chemberta_dataset import ChembertaDataset
 from mole.models.chemberta_regressor import ChembertaRegressorWithFeatures
 
@@ -53,9 +53,10 @@ def validate_conversion(hf_model: RobertaModel, tl_model: tl.HookedEncoder,
         )
         
         # Also get the encoder output for final comparison
-        tl_encoder_out = tl_model.encoder_output(
+        tl_encoder_out = get_final_encoder_output(
+            tl_model,
             test_input_ids,
-            test_attention_mask
+            one_zero_attention_mask=test_attention_mask,
         )
     # Compare outputs layer by layer
     diffs = {}

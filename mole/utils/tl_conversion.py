@@ -25,6 +25,35 @@ from transformers.models.roberta.modeling_roberta import create_position_ids_fro
 from mole.models.chemberta_regressor import ChembertaRegressorWithFeatures
 
 
+def get_final_encoder_output(
+    tl_model: tl.HookedEncoder,
+    input_ids: torch.Tensor,
+    one_zero_attention_mask: Optional[torch.Tensor] = None,
+) -> torch.Tensor:
+    """Return final encoder states in a TL-version-robust way."""
+    if hasattr(tl_model, "encoder_output"):
+        return tl_model.encoder_output(
+            input_ids,
+            one_zero_attention_mask=one_zero_attention_mask,
+        )
+
+    _, cache = tl_model.run_with_cache(
+        input_ids,
+        one_zero_attention_mask=one_zero_attention_mask,
+    )
+    last_layer = tl_model.cfg.n_layers - 1
+    normalized_key = f"blocks.{last_layer}.hook_normalized_resid_post"
+    resid_key = f"blocks.{last_layer}.hook_resid_post"
+    if normalized_key in cache:
+        return cache[normalized_key]
+    if resid_key in cache:
+        return cache[resid_key]
+    raise KeyError(
+        "Could not find final encoder activations in cache. "
+        f"Tried '{normalized_key}' and '{resid_key}'."
+    )
+
+
 def create_faithful_tl_model(hf_model: RobertaModel, device: Optional[str] = None) -> tl.HookedEncoder:
     """Create a TransformerLens model that is numerically identical to the HF model.
     
@@ -81,6 +110,17 @@ def create_faithful_tl_model(hf_model: RobertaModel, device: Optional[str] = Non
     
     # Bind the faithful embedding function
     tl_model.embed.forward = types.MethodType(hf_faithful_embed, tl_model.embed)
+
+    # Backward-compatible helper used across this repo. Some TransformerLens
+    # versions do not expose `encoder_output`, so we provide it ourselves.
+    def _encoder_output(self, input_ids, one_zero_attention_mask=None):
+        return get_final_encoder_output(
+            self,
+            input_ids,
+            one_zero_attention_mask=one_zero_attention_mask,
+        )
+
+    tl_model.encoder_output = types.MethodType(_encoder_output, tl_model)
     
     return tl_model
 
@@ -199,7 +239,11 @@ class FaithfulTLRegressor(nn.Module):
         Returns:
             Predictions in normalized space (default) or original space (if denormalize=True)
         """
-        hidden = self.tl_model.encoder_output(input_ids, one_zero_attention_mask=attention_mask)
+        hidden = get_final_encoder_output(
+            self.tl_model,
+            input_ids,
+            one_zero_attention_mask=attention_mask,
+        )
         cls_token = hidden[:, 0, :]  # Extract CLS token
         predictions = self.mlp_head(self.dropout(cls_token)).squeeze(-1)
         
